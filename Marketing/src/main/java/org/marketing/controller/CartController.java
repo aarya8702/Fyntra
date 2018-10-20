@@ -13,6 +13,8 @@ import org.marketing.dao.CustomerDao;
 import org.marketing.dao.CustomerOrderDao;
 import org.marketing.dao.ProductDao;
 import org.marketing.dao.ShoppingCartDao;
+import org.marketing.dao.UserBillingDao;
+import org.marketing.dao.UserShippingDao;
 import org.marketing.model.CartItem;
 import org.marketing.model.Customer;
 import org.marketing.model.CustomerOrder;
@@ -21,6 +23,8 @@ import org.marketing.model.Promotions;
 import org.marketing.model.ShippingAddress;
 import org.marketing.model.ShoppingCart;
 import org.marketing.model.User;
+import org.marketing.model.UserBilling;
+import org.marketing.model.UserShipping;
 import org.marketing.utility.MailConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -57,6 +61,12 @@ public class CartController {
 	
 	@Autowired
 	private CustomerOrderDao customerOrderDao;
+	
+	@Autowired
+	private UserShippingDao userShippingDao;
+	
+	@Autowired
+	private UserBillingDao userBillingDao;
 	
 	@RequestMapping(value = "/addToCart/{productId}", method = RequestMethod.POST)
 	public String addToCart(@PathVariable("productId") int productId, @AuthenticationPrincipal Principal principal,
@@ -233,16 +243,43 @@ public class CartController {
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
 
-		// grandTotal
+	
 
 		// create CustomerOrder object
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setOrderDate(new Date());
 		customerOrder.setCustomer(customer);
 		customerOrder.setOrderTotal(shoppingCart.getGrandTotal());
+		
+		
+		UserBilling userBilling = new UserBilling();
+		userBilling.setApartmentnumber(customer.getBillingAddress().getApartmentnumber());
+		userBilling.setStreetname(customer.getBillingAddress().getStreetname());
+		userBilling.setCity(customer.getBillingAddress().getCity());
+		userBilling.setState(customer.getBillingAddress().getState());
+		userBilling.setZipcode(customer.getBillingAddress().getZipcode());
+		userBilling.setCountry(customer.getBillingAddress().getCountry());
+		userBilling.setCustomerOrder(customerOrder);
+		userBillingDao.save(userBilling);
+		
+
+		UserShipping userShipping = new UserShipping();
+		userShipping.setApartmentnumber(customer.getShippingAddress().getApartmentnumber());
+		userShipping.setStreetname(customer.getShippingAddress().getStreetname());
+		userShipping.setCity(customer.getShippingAddress().getCity());
+		userShipping.setState(customer.getShippingAddress().getState());
+		userShipping.setZipcode(customer.getShippingAddress().getZipcode());
+		userShipping.setCountry(customer.getShippingAddress().getCountry());
+        userShipping.setCustomerOrder(customerOrder);
+		userShippingDao.save(userShipping);
+		
+		
+		customerOrder.setUserBilling(userBilling);
+		customerOrder.setUserShipping(userShipping);
 		if (cartItems.size() > 0)
 			customerOrder = customerOrderDao.createCustomerOrder(customerOrder);
 
+		
 		for (CartItem cartItem : cartItems) {
 
 			Product product = cartItem.getProduct();

@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,7 +33,13 @@ public class CustomerOrder {
 	
 	@ManyToOne
 	private Customer customer;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserShipping userShipping;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserBilling userBilling;
+	
 	public List<CartItem> getCartItem() {
 		return cartItem;
 	}
@@ -99,6 +106,24 @@ public class CustomerOrder {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	public UserShipping getUserShipping() {
+		return userShipping;
+	}
+
+	public void setUserShipping(UserShipping userShipping) {
+		this.userShipping = userShipping;
+	}
+
+	public UserBilling getUserBilling() {
+		return userBilling;
+	}
+
+	public void setUserBilling(UserBilling userBilling) {
+		this.userBilling = userBilling;
+	}
+	
+	
 	
 	
 	

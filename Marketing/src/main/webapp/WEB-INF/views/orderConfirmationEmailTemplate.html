@@ -36,19 +36,19 @@
 	</tr>
 	<tr>
 		<td>
-			<span th:text="${customerorder.customer.shippingAddress.apartmentnumber }"></span><br/>
-			<span th:text="${customerorder.customer.shippingAddress.streetname}"></span><br/>
-			<span th:text="${customerorder.customer.shippingAddress.city}"></span><br/>
-			<span th:text="${customerorder.customer.shippingAddress.state}"></span><br/>
-			<span th:text="${customerorder.customer.shippingAddress.zipcode}"></span><br/>
+			<span th:text="${customerorder.userShipping.apartmentnumber }"></span><br/>
+			<span th:text="${customerorder.userShipping.streetname}"></span><br/>
+			<span th:text="${customerorder.userShipping.city}"></span><br/>
+			<span th:text="${customerorder.userShipping.state}"></span><br/>
+			<span th:text="${customerorder.userShipping.zipcode}"></span><br/>
 		</td>
 		
 		<td>
-			<span th:text="${customerorder.customer.billingAddress.apartmentnumber }"></span><br/>
-			<span th:text="${customerorder.customer.billingAddress.streetname}"></span><br/>
-			<span th:text="${customerorder.customer.billingAddress.city}"></span><br/>
-			<span th:text="${customerorder.customer.billingAddress.state}"></span><br/>
-			<span th:text="${customerorder.customer.billingAddress.zipcode}"></span><br/>
+			<span th:text="${customerorder.userBilling.apartmentnumber }"></span><br/>
+			<span th:text="${customerorder.userBilling.streetname}"></span><br/>
+			<span th:text="${customerorder.userBilling.city}"></span><br/>
+			<span th:text="${customerorder.userBilling.state}"></span><br/>
+			<span th:text="${customerorder.userBilling.zipcode}"></span><br/>
 		</td>
 	</tr>
 </table>

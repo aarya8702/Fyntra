@@ -323,11 +323,11 @@ p {
 							<div class="col-xs-6 col-sm-6 col-md-6">
 								<address>
 									<strong><button disabled>Shipping Address</button></strong><br />
-									${customerorder.customer.shippingAddress.apartmentnumber },
-									${customerorder.customer.shippingAddress.streetname } <br />
-									${customerorder.customer.shippingAddress.state},
-									${customerorder.customer.shippingAddress.city} <br />
-									${customerorder.customer.shippingAddress.zipcode}
+									${customerorder.userShipping.apartmentnumber },
+									${customerorder.userShipping.streetname } <br />
+									${customerorder.userShipping.state},
+									${customerorder.userShipping.city} <br />
+									${customerorder.userShipping.zipcode}
 								</address>
 							</div>
 							<div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -340,11 +340,11 @@ p {
 							<div class="col-xs-6 col-sm-6 col-md-6">
 								<address>
 									<strong><button disabled>Billing Address</button></strong><br />
-									${customerorder.customer.billingAddress.apartmentnumber},
-									${customerorder.customer.billingAddress.streetname} <br />
-									${customerorder.customer.billingAddress.city},
-									${customerorder.customer.billingAddress.state} <br />
-									${customerorder.customer.billingAddress.zipcode}
+									${customerorder.userBilling.apartmentnumber},
+									${customerorder.userBilling.streetname} <br />
+									${customerorder.userBilling.city},
+									${customerorder.userBilling.state} <br />
+									${customerorder.userBilling.zipcode}
 								</address>
 							</div>
 						</div>

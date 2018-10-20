@@ -42,12 +42,12 @@
 													</div>
 													<div class="panel-body">
 														<span >${order.customer.firstname} ${order.customer.lastname}</span><br />
-														<span>${order.customer.billingAddress.apartmentnumber}</span><br />
-														<span>${order.customer.billingAddress.streetname}</span><br />
-														<span>${order.customer.billingAddress.city}</span><br />
-														<span>${order.customer.billingAddress.state}</span><br />
-														<span>${order.customer.billingAddress.zipcode}</span><br />
-														<span>${order.customer.billingAddress.country}</span><br />
+														<span>${order.userBilling.apartmentnumber}</span><br />
+														<span>${order.userBilling.streetname}</span><br />
+														<span>${order.userBilling.city}</span><br />
+														<span>${order.userBilling.state}</span><br />
+														<span>${order.userBilling.zipcode}</span><br />
+														<span>${order.userBilling.country}</span><br />
 													</div>
 												</div>
 											</div>
@@ -60,12 +60,12 @@
 													<div class="panel-body">
 														
 														<span >${order.customer.firstname} ${order.customer.lastname}</span><br />
-														<span>${order.customer.shippingAddress.apartmentnumber}</span><br />
-														<span>${order.customer.shippingAddress.streetname}</span><br />
-														<span>${order.customer.shippingAddress.city}</span><br />
-														<span>${order.customer.shippingAddress.state}</span><br />
-														<span>${order.customer.shippingAddress.zipcode}</span><br />
-														<span>${order.customer.shippingAddress.country}</span><br />
+														<span>${order.userShipping.apartmentnumber}</span><br />
+														<span>${order.userShipping.streetname}</span><br />
+														<span>${order.userShipping.city}</span><br />
+														<span>${order.userShipping.state}</span><br />
+														<span>${order.userShipping.zipcode}</span><br />
+														<span>${order.userShipping.country}</span><br />
 													</div>
 												</div>
 											</div>

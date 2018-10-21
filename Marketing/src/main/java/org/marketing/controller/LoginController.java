@@ -181,13 +181,13 @@ public class LoginController {
 //		Retailer retailer = retailerDao.findRetailerByEmail(email);
 		
 		
-		if(user == null) {
+		if(user == null || user.getRetailer() == null ) {
 			model.addAttribute("NotExists", true);
 			return "webpages/forgotPasswordRetailer";
 		}
 		
-		Retailer retailer = retailerDao.findRetailerByEmail(user.getEmail());
-
+		Retailer retailer = retailerDao.findRetailerByEmail(email);
+		
 		String password = SecurityUtility.randomPassword();
 		retailer.getUser().setPassword(password);
 		System.out.println("password is: " + password);
@@ -324,12 +324,17 @@ public class LoginController {
 		User user = customerDao.getUser(email);
 
 		
-		if (user == null) {
+		if (user == null || user.getCustomer() == null) {
 			model.addAttribute("NotExists", true);
 			return "webpages/forgotPasswordCustomer";
 		}
 
 		Customer customer = customerDao.findCustomerByEmail(email);
+		
+		if (customer == null) {
+			model.addAttribute("NotExists", true);
+			return "webpages/forgotPasswordCustomer";
+		}
 		String password = SecurityUtility.randomPassword();
 		customer.getUser().setPassword(password);
 		System.out.println("password is: " + password);

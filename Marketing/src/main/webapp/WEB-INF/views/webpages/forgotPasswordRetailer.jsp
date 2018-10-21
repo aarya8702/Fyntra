@@ -17,13 +17,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title>Forgot Password</title>
+	<title>Fashion Store: Retailer Forgot Password</title>
 
 </head>
 <body>
 	<div class="container">
-			<div class = "container">
-		 <h2>Retailer Password Reset Portal</h2>
+		<form class="well form-horizontal" action="<c:url value='/forgotPasswordCustomerPost'></c:url>" method="post">
+		<div class = "container">
+		 <h2>Retailer Reset Password Portal</h2>
 		 </div>
 		 <hr>
 		 <c:if test="${forgetPasswordEmailSent}">
@@ -32,15 +33,13 @@
 		  <c:if test="${NotExists}">
 		 <div class = "alert alert-danger">*Email Not Exists</div>
 		 </c:if>
-		 	<form class="well form-horizontal" action="<c:url value='/forgotPasswordPost'></c:url>" method="post">
-		 
 			<div class="form-group">
 				<label class="col-md-4 control-label">Enter Email Address</label>
 				<div class="col-md-4 inputGroupContainer">
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope"></i></span> 
-							<input required="required" name="email" placeholder="Email Address" class="form-control" type="email"/>
+							<input required="required" name="emaill" placeholder="Email Address" class="form-control" type="email"/>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,7 @@
 package org.marketing.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -18,6 +20,7 @@ import org.marketing.model.PasswordResetTokenCustomer;
 import org.marketing.model.Retailer;
 import org.marketing.model.ShippingAddress;
 import org.marketing.model.ShoppingCart;
+import org.marketing.model.User;
 import org.marketing.utility.MailConstructor;
 import org.marketing.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -173,13 +176,17 @@ public class LoginController {
 	public String forgotPassword(HttpServletRequest request, @ModelAttribute("email") String email, Model model) {
 
 		
-//		User user = retailerDao.getUser(email);
-		Retailer retailer = retailerDao.findRetailerByEmail(email);
+		User user = retailerDao.getUser(email);
 
-		if (!email.equals(retailer.getUser().getEmail())) {
+//		Retailer retailer = retailerDao.findRetailerByEmail(email);
+		
+		
+		if(user == null) {
 			model.addAttribute("NotExists", true);
-			return "forward:/forgotPasswordRetailer";
+			return "webpages/forgotPasswordRetailer";
 		}
+		
+		Retailer retailer = retailerDao.findRetailerByEmail(user.getEmail());
 
 		String password = SecurityUtility.randomPassword();
 		retailer.getUser().setPassword(password);
@@ -314,14 +321,15 @@ public class LoginController {
 	@RequestMapping(value = "/forgotPasswordCustomerPost")
 	public String forgotPasswordCustomerPost(HttpServletRequest request, @ModelAttribute("emaill") String email, Model model) {
 
-//		User user = customerDao.getUser(email);
+		User user = customerDao.getUser(email);
 
-		Customer customer = customerDao.findCustomerByEmail(email);
-		if (customer == null) {
+		
+		if (user == null) {
 			model.addAttribute("NotExists", true);
 			return "webpages/forgotPasswordCustomer";
 		}
 
+		Customer customer = customerDao.findCustomerByEmail(email);
 		String password = SecurityUtility.randomPassword();
 		customer.getUser().setPassword(password);
 		System.out.println("password is: " + password);

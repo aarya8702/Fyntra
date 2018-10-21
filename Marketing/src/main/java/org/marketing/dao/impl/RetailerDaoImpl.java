@@ -1,5 +1,6 @@
 package org.marketing.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -104,7 +105,9 @@ public class RetailerDaoImpl implements RetailerDao {
 
 	public Retailer findRetailerByEmail(String email) {
 		
-		return (Retailer) getSession().createQuery("from Retailer as a where a.user.email = :email").setString("email", email).list().get(0);
+		Retailer retailer = (Retailer) getSession().createQuery("from Retailer as a where a.user.email = :email").setString("email", email).list().get(0);
+		
+		return retailer;
 	}
 
 	public Promotions findPromoById(int pid) {

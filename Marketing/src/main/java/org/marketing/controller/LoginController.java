@@ -175,18 +175,19 @@ public class LoginController {
 	@RequestMapping(value = "/forgotPasswordPost")
 	public String forgotPassword(HttpServletRequest request, @ModelAttribute("email") String email, Model model) {
 
-		
-		User user = retailerDao.getUser(email);
+	    User user = retailerDao.getUser(email);
 
-//		Retailer retailer = retailerDao.findRetailerByEmail(email);
-		
-		
-		if(user == null || user.getRetailer() == null ) {
+	
+	    if (user == null || user.getRetailer() == null ) {
+			
 			model.addAttribute("NotExists", true);
 			return "webpages/forgotPasswordRetailer";
 		}
+	
+
+		Retailer retailer = retailerDao.findRetailerByEmail(user.getEmail());
 		
-		Retailer retailer = retailerDao.findRetailerByEmail(email);
+		
 		
 		String password = SecurityUtility.randomPassword();
 		retailer.getUser().setPassword(password);
@@ -331,10 +332,6 @@ public class LoginController {
 
 		Customer customer = customerDao.findCustomerByEmail(email);
 		
-		if (customer == null) {
-			model.addAttribute("NotExists", true);
-			return "webpages/forgotPasswordCustomer";
-		}
 		String password = SecurityUtility.randomPassword();
 		customer.getUser().setPassword(password);
 		System.out.println("password is: " + password);

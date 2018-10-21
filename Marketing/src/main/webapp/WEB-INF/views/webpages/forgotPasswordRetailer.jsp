@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Site made with Mobirise Website Builder v4.8.1, https://mobirise.com -->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet"
@@ -22,7 +21,7 @@
 </head>
 <body>
 	<div class="container">
-		<form class="well form-horizontal" action="<c:url value='/forgotPasswordCustomerPost'></c:url>" method="post">
+		<form class="well form-horizontal" action="<c:url value='/forgotPasswordPost'></c:url>" method="post">
 		<div class = "container">
 		 <h2>Retailer Reset Password Portal</h2>
 		 </div>
@@ -39,7 +38,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope"></i></span> 
-							<input required="required" name="emaill" placeholder="Email Address" class="form-control" type="email"/>
+							<input required="required" name="email" placeholder="Email Address" class="form-control" type="email"/>
 					</div>
 				</div>
 			</div>

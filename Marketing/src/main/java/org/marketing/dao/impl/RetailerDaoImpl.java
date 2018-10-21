@@ -105,9 +105,9 @@ public class RetailerDaoImpl implements RetailerDao {
 
 	public Retailer findRetailerByEmail(String email) {
 		
-		Retailer retailer = (Retailer) getSession().createQuery("from Retailer as a where a.user.email = :email").setString("email", email).list().get(0);
+		return (Retailer) getSession().createQuery("from Retailer as a where a.user.email = :email").setString("email", email).list().get(0);
 		
-		return retailer;
+	
 	}
 
 	public Promotions findPromoById(int pid) {

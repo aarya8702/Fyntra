@@ -21,13 +21,18 @@ public class SearchController {
 	@RequestMapping(value="/searchProduct",method = RequestMethod.GET)
 	public String search(@RequestParam(value="search",required = false) String q,Model model) {
 		
-		List<Product> productList = null;
-		try {
-			productList = productDao.blurrySearch(q);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("list",productList);
-		return "webpages/gallery";
+		List<Product> productList = productDao.blurrySearch( q);
+		
+	    if(productList == null) {
+	    	
+	    	model.addAttribute("error",true);
+	    	return "webpages/gallery";
+	    }
+	    	
+		   
+	    	model.addAttribute("list",productList);
+		    return "webpages/gallery";
+	    
+		
 	}
 }

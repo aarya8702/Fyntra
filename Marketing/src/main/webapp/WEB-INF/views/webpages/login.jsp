@@ -10,8 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:500" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
+<script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
 <style>
 .panel {
 	border: white;
@@ -21,13 +23,13 @@
 </head>
 <body style="background-color: rgb(255, 240, 240);">
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<div class="container">
+	<div class="container" style="margin-top: 100px;">
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 				<div class="panel panel-primary" style="padding-top: 30px; margin-top: 50px;">
 					<div style="margin-bottom: 20px;">
-						<h2 style="padding-left: 95px;" >Login Form</h2>
+						<h2 style="padding-left: 130px;" >Login</h2>
 					</div>
 					  <div class="row" style="padding-left:103px; margin-bottom: -30px;">
 				    <c:if test="${not empty error }">
@@ -54,8 +56,13 @@
 					      <br>
 					      <a href="<c:url value='/newRetailerForm'></c:url>" class="btn" style="padding:0px; "><font size="2px;">new Retailer?</font></a>
 					     </div>
-					     <div class="col-md-4"></div>
-					     <div class="col-md-4" style="padding:0px;"><a href="<c:url value='/forgotPassword'></c:url>" class="btn" style="padding:0px;  "><font size="2px;">Recover<br> Password</font></a></div>
+					    </div>
+					    <hr>
+					    <div class="row">
+					     <div class="col-md-8" ><a href="<c:url value='/forgotPasswordCustomer'></c:url>" class="btn" style="padding:0px;  "><font size="2px;">Recover Password for customer</font></a></div>
+					    </div>
+					    <div class="row">
+					     <div class="col-md-8" ><a href="<c:url value='/forgotPasswordRetailer'></c:url>" class="btn" style="padding:0px;  "><font size="2px;">Recover Password for Retailer</font></a></div>
 					    </div>
 					</div>
 				</div>

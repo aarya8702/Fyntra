@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -7,15 +6,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:500" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
 <title>My Account</title>
+<script type="text/javascript">
+
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-inverse');
+}else{
+	$('.navbar').removeClass('navbar-inverse');
+}
+})</script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <div class="container-fluid">
 	<div class="row">
 		<jsp:include page="/WEB-INF/views/common/navigation.jsp"/>
@@ -30,8 +39,8 @@
 		            </div>
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <div class = "jumbotron">
-		                     <h2>Welcome To My Account</h2>
+		                    <div class = "jumbotron" style="padding: 50px 50px 50px 50px;">
+		                     <h2>Welcome, ${retailer.retailername }</h2>
 		                    </div>
 		                </div>
 		            </div> 

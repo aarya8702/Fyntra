@@ -8,18 +8,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Fashion Store: Browse Product</title>
-<link rel="stylesheet" href="<c:url value = '/resources/css/gallery.css'></c:url>">
-<link rel="stylesheet" href="<c:url value = '/resources/css/style.css'></c:url>">
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:500" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
+<link rel="stylesheet" href="<c:url value='/resources/css/gallery.css'></c:url>">
+<script type="text/javascript">
 
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-inverse');
+}else{
+	$('.navbar').removeClass('navbar-inverse');
+}
+})</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-<div class="container">
+<div class="container" style="margin-top: 80px;">
+<c:if test="${error }">
+  <h2>Sorry, no result found</h2>
+</c:if>
  <c:forEach items = "${list }" var = "product">
 <div class="col-xs-12 col-md-6 bootstrap snippets">
 	<!-- product -->

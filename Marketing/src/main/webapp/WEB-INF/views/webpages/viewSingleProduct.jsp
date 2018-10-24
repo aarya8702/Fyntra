@@ -5,18 +5,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-<link rel="stylesheet" href="<c:url value='/resources/css/singleproduct.css'></c:url>">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:500" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
+<script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
+<link rel="stylesheet" href="<c:url value='/resources/css/singleproduct.css'></c:url>">
+<script type="text/javascript">
+
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-inverse');
+}else{
+	$('.navbar').removeClass('navbar-inverse');
+}
+})</script>
 <title>Fashion Store: Product Info</title>
 </head>
 <body >
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<div class="container" style="margin-bottom: 50px;">
+	<div class="container" style="margin-bottom: 50px; margin-top: 50px;">
 	<form action="<c:url value='/cart/addToCart/${product.productId }'></c:url>" method="post">
 		<div class="card">
 			<div class="container-fliud">
@@ -97,9 +107,6 @@
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="submit">add
 								to cart</button>
-							<button class="like btn btn-default" type="button">
-								<span class="fa fa-heart"></span>
-							</button>
 						</div>
 						
 					</div>

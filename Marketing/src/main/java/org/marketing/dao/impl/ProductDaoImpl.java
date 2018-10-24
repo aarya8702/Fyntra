@@ -58,12 +58,12 @@ public class ProductDaoImpl implements ProductDao{
 		
 		return getSession().createQuery("from Product as a where a.category = :id").setString("id", maincategory).list();
 	}
-
-	@SuppressWarnings("unchecked")
-	public List<Product> searchProductsBySearchTerm(String searchString) {
-		
-		return getSession().createQuery("from Product as a where a.productname = :productname").setString("productname", searchString).list();
-	}
+//
+//	@SuppressWarnings("unchecked")
+//	public List<Product> searchProductsBySearchTerm(String searchString) {
+//		
+//		return getSession().createQuery("from Product as a where a.productname = :productname").setString("productname", searchString).list();
+//	}
 
 	@SuppressWarnings("unchecked")
 	public List<Product> findProductsBySubCat1(String subcategory1) {
@@ -98,9 +98,10 @@ public class ProductDaoImpl implements ProductDao{
 	public List<Product> blurrySearch(String searchTerm) {
 
 
-		return getSession().createQuery("from Product as a where a.productname = :productname").setString("productname", searchTerm).list();
+		return getSession().createQuery("from Product as a where a.productname like :search or a.category.maincategory like :search or a.description like :search").setString("search", "%" + searchTerm + "%").list();
 
 	}
+	
 
 
 		

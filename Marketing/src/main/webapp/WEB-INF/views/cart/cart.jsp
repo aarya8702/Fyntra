@@ -5,11 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:500" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="<c:url value='/resources/css/style.css'></c:url>" rel="stylesheet">
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
+<script type="text/javascript">
+
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-inverse');
+}else{
+	$('.navbar').removeClass('navbar-inverse');
+}
+})</script>
 <script>
 $(document).ready(function(){
 	$(".cartItemQty").on('change', function(){
@@ -60,7 +70,7 @@ $(document).ready(function(){
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<c:if test="${!empty(cartItems) }">
 
-<div class="container-fluid" style="margin-top: 50px;">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
         <a href="<c:url value="/cart/clearCart"></c:url>" class="btn btn-danger pull-left" >Clear Cart <span class = "glyphicon glyphicon-trash"></span></a>
@@ -123,21 +133,6 @@ $(document).ready(function(){
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>Rs. ${shoppingCart.grandTotal }</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        
-                        <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>Free</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
                         <td><h3>Total</h3></td>
                         <td class="text-right"><h4><strong>Rs. ${shoppingCart.grandTotal }</strong></h4></td>
                     </tr>
@@ -162,9 +157,9 @@ $(document).ready(function(){
 </div>
 </c:if>
 <c:if test="${ empty(cartItems) }">
-<div class = "container">
-<div class = "jumbotron">
-<div style = "margin-top:150px; margin-left:250px;">
+<div class = "container" style="margin-top: 100px; ">
+<div class = "jumbotron "style="padding-top: 50px; background-color: lightgrey;">
+<div style = " margin-left:250px;">
 <h1 style = "color:black;">Your Cart is Empty </h1><span><a href = "${pageContext.request.contextPath }/gallery">continue shopping......</a></span>
 </div>
 </div>

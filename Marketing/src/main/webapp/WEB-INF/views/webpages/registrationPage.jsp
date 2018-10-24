@@ -9,16 +9,7 @@
 
 <title>Fashion Store: Registration</title>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/style.css'></c:url>">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script>
 	$(document).ready(function() {
 
@@ -48,7 +39,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<div class="container">
+	<div class="container" style="margin-top: 100px;">
 		<h2>Registration Hub</h2>
 		<!--  <p>To make the tabs toggleable, add the data-toggle="tab" attribute to each link. 
   Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p> 

@@ -100,12 +100,11 @@ public class ProductController {
 		return new ModelAndView("redirect:/retailer/product/list");
 	}
 	
-	@RequestMapping(value = "/product/updateProduct",method = RequestMethod.GET)
-	public ModelAndView updateRetailer(@AuthenticationPrincipal Principal principal) {
+	@RequestMapping(value = "/product/{productId}",method = RequestMethod.GET)
+	public ModelAndView updateRetailer(@PathVariable("productId") int productId ) {
 
 		ModelAndView model = new ModelAndView("product/productupdate");
-		String email = principal.getName();
-		Product product = productDao.findProductByEmail(email);
+		Product product = productDao.findProductById(productId);
 		model.addObject("product",product);
 		model.addObject("categories",categoryDao.listAllCategories());
 		model.addObject("sc",subCat1Dao.listAllSubCat1());

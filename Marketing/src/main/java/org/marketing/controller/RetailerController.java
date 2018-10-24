@@ -92,8 +92,11 @@ public class RetailerController {
 	}
 
 	@RequestMapping(value = "/myAccount", method = RequestMethod.GET)
-	public ModelAndView myAccount() {
+	public ModelAndView myAccount(@AuthenticationPrincipal Principal principal) {
 		ModelAndView model = new ModelAndView("retailer/retaileraccount");
+		String email = principal.getName();
+		Retailer retailer = retailerDao.findRetailerByEmail(email);
+		model.addObject("retailer",retailer);
 		return model;
 	}
 

@@ -7,13 +7,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:500" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
 <title>My Account</title>
+<script type="text/javascript">
+
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-inverse');
+}else{
+	$('.navbar').removeClass('navbar-inverse');
+}
+})</script>
 </head>
 <body>
 <div class="container-fluid">

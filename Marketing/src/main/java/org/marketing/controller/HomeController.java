@@ -9,6 +9,7 @@ import org.marketing.dao.CategoryDao;
 import org.marketing.dao.ProductDao;
 import org.marketing.dao.RetailerDao;
 import org.marketing.dao.SubCat1Dao;
+import org.marketing.model.Category;
 import org.marketing.model.Product;
 import org.marketing.model.Promotions;
 import org.marketing.model.Retailer;
@@ -37,6 +38,12 @@ public class HomeController {
 	@Autowired
 	private RetailerDao retailerDao;
 	
+	@RequestMapping(value="/404")
+	public String notFoundPage(){
+	
+		return "webpages/404";
+	}
+	
 	@RequestMapping(value = "/",method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session) {
 		ModelAndView model = new ModelAndView("webpages/home");
@@ -60,35 +67,22 @@ public class HomeController {
 		return model;
 	}
 	
-	//data tables 
-	 @RequestMapping(value="all/searchbycategory")
-	   public ModelAndView searchByCategory(@RequestParam String searchCondition){
-			ModelAndView model = new ModelAndView("product/ProductList");
-		if(searchCondition.equals("All"))
-			model.addObject("searchCondition","");
-		else
-		model.addObject("searchCondition",searchCondition);
-		model.addObject("list",productDao.listAllProducts());
-		return model;
-	   }
 	
 	@RequestMapping(value = "/products-by-category-{maincategory}",method = RequestMethod.GET)
 	public ModelAndView searchProductByCategory(@PathVariable("maincategory") String maincategory) {
 		ModelAndView model = new ModelAndView("webpages/gallery");
 		List<Product> products = productDao.searchProductsByCategoryId(maincategory);
 		model.addObject("list",products);
-		model.addObject("categories",categoryDao.listAllCategories());
-		model.addObject("subcat1",subCat1Dao.listAllSubCat1());
 		return model;
 	}
 	
-	@RequestMapping(value = "/gallery",params = "srch-str")
-	public ModelAndView searchProductsBySearch(@RequestParam("srch-str") String searchString) {
-		ModelAndView model = new ModelAndView("webpages/gallery");
-		List<Product> products = productDao.searchProductsBySearchTerm(searchString);
-		model.addObject("list",products);
-		return model;
-	}
+//	@RequestMapping(value = "/gallery",params = "srch-str")
+//	public ModelAndView searchProductsBySearch(@RequestParam("srch-str") String searchString) {
+//		ModelAndView model = new ModelAndView("webpages/gallery");
+//		List<Product> products = productDao.searchProductsBySearchTerm(searchString);
+//		model.addObject("list",products);
+//		return model;
+//	}
 	
 	@RequestMapping(value = "/products-by-subcategory-{subcategory1}",method = RequestMethod.GET)
 	public ModelAndView searchProductBySubCategory(@PathVariable("subcategory1") String subcategory1) {
@@ -100,6 +94,7 @@ public class HomeController {
 		model.addObject("list",products);
 		return model;
 	}
+	
 	@RequestMapping(value = "/product-by-{retId}",method = RequestMethod.GET)
 	public ModelAndView productsByRetailer(@PathVariable("retId") int retId) {
 		

@@ -26,7 +26,7 @@ public interface ProductDao {
 	
 	public List<Product> searchProductsByCategoryId(String maincategory);
 	
-	public List<Product> searchProductsBySearchTerm(String searchString);
+//	public List<Product> searchProductsBySearchTerm(String searchString);
 	
 	List<Product> blurrySearch(String searchTerm);
 	

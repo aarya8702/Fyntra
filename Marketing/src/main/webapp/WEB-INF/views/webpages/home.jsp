@@ -15,10 +15,26 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://fonts.googleapis.com/css?family=Quicksand:500" />
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/style.css'></c:url>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/search.css'></c:url>">
+<script defer
+	src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
+<script type="text/javascript">
+	$(window).on('scroll', function() {
+
+		if ($(window).scrollTop()) {
+			$('.navbar').addClass('navbar-inverse');
+		} else {
+			$('.navbar').removeClass('navbar-inverse');
+		}
+	})
+</script>
 <style>
 .panel-heading {
 	text-align: center;
@@ -38,7 +54,7 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="<c:url value='/resources/images/carousel 1.jpg'></c:url>"
+				<img src="<c:url value='/resources/images/carousel1.jpeg'></c:url>"
 					alt="Los Angeles" style="width: 100%; height: 450px;">
 				<div class="carousel-caption">
 					<h3>Chania</h3>
@@ -47,7 +63,7 @@
 			</div>
 
 			<div class="item">
-				<img src="<c:url value='/resources/images/carousel2.jpg'></c:url>"
+				<img src="<c:url value='/resources/images/carousel2.jpeg'></c:url>"
 					alt="Los Angeles" style="width: 100%; height: 450px;">
 				<div class="carousel-caption">
 					<h3>Chania</h3>
@@ -56,7 +72,7 @@
 			</div>
 
 			<div class="item">
-				<img src="<c:url value='/resources/images/carousel3.jpg'></c:url>"
+				<img src="<c:url value='/resources/images/carousel3.jpeg'></c:url>"
 					alt="Los Angeles" style="width: 100%; height: 450px;">
 				<div class="carousel-caption">
 					<h3>Chania</h3>
@@ -77,15 +93,20 @@
 	</div>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
-	<div class="jumbotron" style="background-color: grey;">
+	<div class="jumbotron"
+		style="background-image: url('<c:url value='/resources/images/search.jpg'></c:url>');">
 		<div class="row">
 			<div class="container">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<form method="get" action="">
-						<input type="text" name="seachLocation"
-							placeholder="Search Nearby Promotions" class="form-control"
-							style="height: 50px; border-radius: 25px; text-align: center;" />
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<form id="form-id" action="<c:url value='/searchProduct'></c:url> ">
+						<div class="search-box">
+							<input type="text" name="search" class="search-txt"
+								placeholder="Search nearby Promotions" /> <a href="#"
+								onclick="document.getElementById('form-id').submit();"
+								class="search-btn"> <i class="fas fa-search"></i>
+							</a>
+						</div>
 					</form>
 				</div>
 				<div class="col-md-4"></div>
@@ -105,7 +126,8 @@
 			<hr>
 			<div class="row">
 				<c:forEach items="${promo }" var="promo">
-					<c:if test="${promo.retailer.retailername == retailer.retailername}">
+					<c:if
+						test="${promo.retailer.retailername == retailer.retailername}">
 						<div class="col-sm-4">
 							<div class="panel panel-primary">
 								<div class="panel-heading" style="height: 100px;">${promo.description }</div>
@@ -114,28 +136,33 @@
 											${retailer.retailername }</font></b>
 								</div>
 								<div class="panel-body" style="height: 150px; padding: 0px;">
-                                  
+
 									<div id="${promo.pid}" class="carousel slide"
 										data-ride="carousel">
 										<!-- Indicators -->
+
 										<ol class="carousel-indicators">
 											<li data-target="#${promo.pid}" data-slide-to="0"
 												class="active"></li>
-											<li data-target="#${promo.pid}" data-slide-to="1"></li>
-											<li data-target="#${promo.pid}" data-slide-to="2"></li>
+										    <c:forEach items="${product }" var="size">
+											<li data-target="#${promo.pid}" data-slide-to="${p.productId }"></li>
+											</c:forEach>
 										</ol>
 
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner">
+											<div class="item active">
+												<img
+													src="<c:url value='/resources/images/carousel1.jpeg'></c:url>"
+													alt="Los Angeles" style="width: 360px; height: 150px;">
+												<div class="carousel-caption">
+													<h3>Chania</h3>
+													<p>The atmosphere in Chania has a touch of Florence and
+														Venice.</p>
+												</div>
+											</div>
 											<c:forEach items="${product }" var="p">
 												<c:if test="${p.retailer.retId == retailer.retId }">
-													<div class="item active">
-														<c:if test="${p.productId == retailer.retId }">
-															<img
-																src="<c:url value='/resources/${p.imageUrl1 }'></c:url>"
-																alt="Los Angeles" style="width: 360px; height: 150px;">
-														</c:if>
-													</div>
 													<div class="item ">
 														<img
 															src="<c:url value='/resources/${p.imageUrl1 }'></c:url>"
@@ -154,12 +181,13 @@
 									<b>Discount:</b> ${promo.discount }%
 								</div>
 								<div class="panel-footer">
-									<a class="btn btn-danger" href="<c:url value='/product-by-${retailer.retId}'></c:url>">browse
+									<a class="btn btn-danger"
+										href="<c:url value='/product-by-${retailer.retId}'></c:url>">browse
 										more</a>
 								</div>
 							</div>
 						</div>
-						</c:if>
+					</c:if>
 				</c:forEach>
 			</div>
 		</c:forEach>

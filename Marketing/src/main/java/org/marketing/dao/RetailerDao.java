@@ -40,5 +40,9 @@ public interface RetailerDao {
 	
 	public void deletePromoCode(Promotions promotions);
 	
+	public List<Promotions> blurrySearch(String searchTerm);
+	
+	public List<Retailer> blurrySearchRetailer(String searchTerm);
+	
 	
 }

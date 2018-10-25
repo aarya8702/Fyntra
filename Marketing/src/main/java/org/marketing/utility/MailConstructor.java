@@ -35,7 +35,7 @@ public class MailConstructor {
 	// ======================retailer registration
 	// E-mail============================
 	public SimpleMailMessage constructResetTokenEmail(String contextPath, Locale locale, String token,
-			Retailer retailer, String password) {
+		Retailer retailer, String password) {
 
 		String url = contextPath + "/newRetailer?token=" + token;
 		String message = "\nPlease click on this link to verify your email and edit your personal information. Your password is: \n"

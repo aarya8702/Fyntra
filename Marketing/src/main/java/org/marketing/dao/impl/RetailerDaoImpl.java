@@ -135,6 +135,18 @@ public class RetailerDaoImpl implements RetailerDao {
 		return getSession().createQuery("from Product as a where a.retailer.retId = :id").setInteger("id", retId).list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Promotions> blurrySearch(String searchTerm) {
+		
+	    return getSession().createQuery("from Promotions as a where a.retailer.street1 like :search or a.retailer.route1 like :search or a.retailer.city1 like :search or a.retailer.state1 like :search or a.retailer.state1 like :search or a.retailer.country1 like :search").setString("search", "%"+searchTerm+"%").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Retailer> blurrySearchRetailer(String searchTerm) {
+
+		return getSession().createQuery("from Retailer as a where a.street1 like :search or a.route1 like :search or a.city1 like :search or a.state1 like :search or a.state1 like :search or a.country1 like :search").setString("search", "%"+searchTerm+"%").list();
+	}
+
 	
 
 }

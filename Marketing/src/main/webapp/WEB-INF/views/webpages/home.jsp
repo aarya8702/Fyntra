@@ -11,20 +11,13 @@
 <title>Fashion Store: Home</title>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://fonts.googleapis.com/css?family=Quicksand:500" />
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/style.css'></c:url>">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/search.css'></c:url>">
-<script defer
-	src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand:500" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
+<link rel="stylesheet" href="<c:url value='/resources/css/search.css'></c:url>">
+<script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
 <script type="text/javascript">
 	$(window).on('scroll', function() {
 
@@ -43,6 +36,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
@@ -91,15 +85,15 @@
 			class="sr-only">Next</span>
 		</a>
 	</div>
-	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-
+	
+   
 	<div class="jumbotron"
 		style="background-image: url('<c:url value='/resources/images/search.jpg'></c:url>');">
 		<div class="row">
 			<div class="container">
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
-					<form id="form-id" action="<c:url value='/searchProduct'></c:url> ">
+					<form id="form-id" action="<c:url value='/search'></c:url> ">
 						<div class="search-box">
 							<input type="text" name="search" class="search-txt"
 								placeholder="Search nearby Promotions" /> <a href="#"

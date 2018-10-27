@@ -49,102 +49,93 @@ public class CartController {
 
 	@Autowired
 	private CustomerDao customerDao;
-	
+
 	@Autowired
 	private MailConstructor mailConstructor;
 
 	@Autowired
 	private JavaMailSender mailSender;
-	
+
 	@Autowired
 	private ShoppingCartDao shoppingCartDao;
-	
+
 	@Autowired
 	private CustomerOrderDao customerOrderDao;
-	
+
 	@Autowired
 	private UserShippingDao userShippingDao;
-	
+
 	@Autowired
 	private UserBillingDao userBillingDao;
-	
+
 	@RequestMapping(value = "/addToCart/{productId}", method = RequestMethod.POST)
 	public String addToCart(@PathVariable("productId") int productId, @AuthenticationPrincipal Principal principal,
 			@ModelAttribute("requestedQuantity") int requestedQuantity, Model model, HttpSession session) {
 
-	
 		String email = principal.getName();
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
-		List<CartItem> cartItems  = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
-		
+		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
+
 		Product product = productDao.findProductById(productId);
-		
-	
-		
-		if(requestedQuantity > product.getQuantity()) {
-			model.addAttribute("error",true);
+
+		if (requestedQuantity > product.getQuantity()) {
+			model.addAttribute("error", true);
 			System.out.println("Out of stock");
-			return "forward:/viewSingleProduct/"+productId;
+			return "forward:/viewSingleProduct/" + productId;
 		}
-		
-		
-		for(CartItem cartItem: cartItems) {
-			if(cartItem.getProduct().getProductId() == product.getProductId()) {
+
+		for (CartItem cartItem : cartItems) {
+			if (cartItem.getProduct().getProductId() == product.getProductId()) {
 				cartItem.setQuanity(requestedQuantity);
 				cartItem.setSubtotal(new BigDecimal(product.getPrice()).multiply(new BigDecimal(requestedQuantity)));
 				cartItemDao.saveOrUpdate(cartItem);
 			}
-			
+
 		}
-		
+
 		CartItem cartItem = new CartItem();
 		cartItem.setProduct(product);
 		cartItem.setQuanity(requestedQuantity);
 		cartItem.setSubtotal(new BigDecimal(product.getPrice()).multiply(new BigDecimal(requestedQuantity)));
 		cartItem.setShoppingCart(shoppingCart);
 		cartItemDao.saveOrUpdate(cartItem);
-		
-		
-		
-		model.addAttribute("success",true);
-		return "forward:/viewSingleProduct/"+productId;
-		
-		
-	
+
+		model.addAttribute("success", true);
+		return "forward:/viewSingleProduct/" + productId;
+
 	}
 
 	@RequestMapping(value = "/listCart", method = RequestMethod.GET)
 	public String listCart(@AuthenticationPrincipal Principal principal, Model model) {
 
 		String email = principal.getName();
-		
+
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
-	
+
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
-		
+
 		BigDecimal cartTotal = new BigDecimal(0);
-		
-		for(CartItem cartItem: cartItems) {
-			if(cartItem.getProduct().getQuantity()>0) {
-				
+
+		for (CartItem cartItem : cartItems) {
+			if (cartItem.getProduct().getQuantity() > 0) {
+
 				cartItemDao.saveOrUpdate(cartItem);
 				cartTotal = cartTotal.add(cartItem.getSubtotal());
 			}
 		}
-		
+
 		shoppingCart.setGrandTotal(cartTotal);
 		shoppingCartDao.updateShoppingCart(shoppingCart);
-		
-		model.addAttribute("cartItems",cartItems);
-		model.addAttribute("shoppingCart",shoppingCart);
-	
+
+		model.addAttribute("cartItems", cartItems);
+		model.addAttribute("shoppingCart", shoppingCart);
+
 		return "cart/cart";
 	}
 
 	@RequestMapping(value = "/delete/{cartId}", method = RequestMethod.GET)
-	public String deleteCartItem(@PathVariable("cartId") Long cartId,@AuthenticationPrincipal Principal principal) {
+	public String deleteCartItem(@PathVariable("cartId") Long cartId, @AuthenticationPrincipal Principal principal) {
 
-	
 		cartItemDao.delete(cartId);
 		return "redirect:/cart/listCart";
 	}
@@ -153,8 +144,8 @@ public class CartController {
 	public String clearCart(@AuthenticationPrincipal Principal principal) {
 
 		String email = principal.getName();
-	    ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
-	    List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
+		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
+		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
 		for (CartItem cartItem : cartItems) {
 			cartItemDao.delete(cartItem.getCartId());
 		}
@@ -183,17 +174,18 @@ public class CartController {
 		User user = cartItemDao.getUser(email);
 		Customer customer = user.getCustomer();
 		customer.setShippingAddress(shippingAddress);
-		
+
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
 		model.addAttribute("customer", customer);
 		model.addAttribute("cartItems", cartItems);
-		model.addAttribute("shoppingCart",shoppingCart);
+		model.addAttribute("shoppingCart", shoppingCart);
 		return "cart/reviewyourorder";
 	}
 
 	@RequestMapping(value = "/applyCode")
-	public String applyPromoCode(@AuthenticationPrincipal Principal principal, @RequestParam("promoCode") String promoCode, Model model) {
+	public String applyPromoCode(@AuthenticationPrincipal Principal principal,
+			@RequestParam("promoCode") String promoCode, Model model) {
 
 		String email = principal.getName();
 
@@ -205,25 +197,27 @@ public class CartController {
 
 		for (CartItem cartItem : cartItems) {
 
-			
 			if (promoCode.equals(promo.getPromotioncode())) {
-				
-				if( cartItem.getProduct().getRetailer().getRetailername().equals(promo.getRetailer().getRetailername())) {
 
-			    BigDecimal discount = cartItem.getSubtotal().multiply(new BigDecimal(promo.getDiscount()).divide(new BigDecimal(100)));
-			    cartItem.setSubtotal(cartItem.getSubtotal().subtract(discount));
-				cartItemDao.saveOrUpdate(cartItem);
-				model.addAttribute("promo",promo);
-				model.addAttribute("success",true);
-				System.out.println("promoRate: " + promo.getDiscount());
-				System.out.println("Discount " + discount);
-			  }else {
-				  model.addAttribute("error",true);
-				  return "forward:/cart/listCart";
-			  }
-			}else {
-				model.addAttribute("invalid", true);
-				return "forward:/cart/listCart";
+				
+				if (cartItem.getProduct().getRetailer().getRetailername()
+						.equals(promo.getRetailer().getRetailername())) {
+
+					if (cartItem.getPromotions() != null) {
+						model.addAttribute("exists", true);
+						System.out.println("Already Applied");
+						return "forward:/cart/listCart";
+					}
+					
+					cartItem.setPromotions(promo);
+					BigDecimal discount = cartItem.getSubtotal()
+							.multiply(new BigDecimal(promo.getDiscount()).divide(new BigDecimal(100)));
+					cartItem.setSubtotal(cartItem.getSubtotal().subtract(discount));
+					cartItemDao.saveOrUpdate(cartItem);
+					System.out.println("promoRate: " + promo.getDiscount());
+					System.out.println("Discount " + discount);
+
+				}
 			}
 		}
 
@@ -243,15 +237,12 @@ public class CartController {
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
 
-	
-
 		// create CustomerOrder object
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setOrderDate(new Date());
 		customerOrder.setCustomer(customer);
 		customerOrder.setOrderTotal(shoppingCart.getGrandTotal());
-		
-		
+
 		UserBilling userBilling = new UserBilling();
 		userBilling.setApartmentnumber(customer.getBillingAddress().getApartmentnumber());
 		userBilling.setStreetname(customer.getBillingAddress().getStreetname());
@@ -261,7 +252,6 @@ public class CartController {
 		userBilling.setCountry(customer.getBillingAddress().getCountry());
 		userBilling.setCustomerOrder(customerOrder);
 		userBillingDao.save(userBilling);
-		
 
 		UserShipping userShipping = new UserShipping();
 		userShipping.setApartmentnumber(customer.getShippingAddress().getApartmentnumber());
@@ -270,16 +260,14 @@ public class CartController {
 		userShipping.setState(customer.getShippingAddress().getState());
 		userShipping.setZipcode(customer.getShippingAddress().getZipcode());
 		userShipping.setCountry(customer.getShippingAddress().getCountry());
-        userShipping.setCustomerOrder(customerOrder);
+		userShipping.setCustomerOrder(customerOrder);
 		userShippingDao.save(userShipping);
-		
-		
+
 		customerOrder.setUserBilling(userBilling);
 		customerOrder.setUserShipping(userShipping);
 		if (cartItems.size() > 0)
 			customerOrder = customerOrderDao.createCustomerOrder(customerOrder);
 
-		
 		for (CartItem cartItem : cartItems) {
 
 			Product product = cartItem.getProduct();
@@ -288,22 +276,21 @@ public class CartController {
 			cartItem.setCustomerOrder(customerOrder);
 			cartItem.setShoppingCart(null);
 			cartItemDao.saveOrUpdate(cartItem);
-//			if (product.getQuantity() == 0) {
-//				productDao.delete(product);
-//			}
+			// if (product.getQuantity() == 0) {
+			// productDao.delete(product);
+			// }
 
 		}
 		shoppingCart.setGrandTotal(new BigDecimal(0));
 		shoppingCartDao.updateShoppingCart(shoppingCart);
-		
+
 		mailSender.send(mailConstructor.constructOrderConfirmationEmail(cartItems, customerOrder, Locale.ENGLISH));
-		
+
 		model.addAttribute("customerorder", customerOrder);
 		model.addAttribute("cartItems", cartItems);
-	
+
 		return "cart/orderdetails";
 
 	}
 
 }
-

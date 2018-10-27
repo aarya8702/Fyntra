@@ -32,5 +32,6 @@ public interface ProductDao {
 	
 	public List<Product> findProductsBySubCat1(String subcategory1);
 
+
 	
 }

@@ -23,7 +23,8 @@ if($(window).scrollTop()){
 <script>
 $(document).ready(function(){
 	$(".cartItemQty").on('change', function(){
-		$('#update-item').css('display', 'inline-block');
+		var id=this.id;
+		$('#update-item-'+id).css('display', 'inline-block');
 	});
 });
 </script>
@@ -73,7 +74,24 @@ $(document).ready(function(){
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <a href="<c:url value="/cart/clearCart"></c:url>" class="btn btn-danger pull-left" >Clear Cart <span class = "glyphicon glyphicon-trash"></span></a>
+        <div class="row">
+         <div class="col-md-2">
+        <a href="<c:url value="/cart/clearCart"></c:url>" class="btn btn-danger pull-left" >Clear Cart <span class = "glyphicon glyphicon-trash"></span></a> 
+         </div>
+        </div>
+        <br>
+         <form action="<c:url value='/cart/applyCode'></c:url>" >
+        <div class="row">
+         <div class="col-md-2" style="padding-top: 5px;">Apply Promo codes:</div>
+         <div class="col-md-2">
+         <input type="text" placeholder="Enter Promocodes" class="form-control" name="promoCode"/>
+         </div>
+         <div class="col-md-2">
+         <button type="submit" class="btn btn-primary">Apply</button>
+         </div>
+        </div>
+        </form> 
+        <br>   
             <table class="table table-hover" width = "100%">
                 <thead>
                     <tr>
@@ -105,21 +123,14 @@ $(document).ready(function(){
                          <td class="col-sm-1 col-md-1 text-center" > ${cart.product.category.maincategory }</td>
                         <td class="col-sm-1 col-md-1" style="text-align: center"> ${cart.quanity }</td>
                           <td class="col-sm-1 col-md-1" style="text-align: center"> ${cart.product.price }</td>
-                        <td>
-                        <form action="<c:url value='/cart/applyCode'></c:url>" >
-                        <c:if test="${error }">
-                        <font color="red"><span class="glyphicon glyphicon-remove"></span> <b>Invalid Code</b> </font>
+                
+                         <c:if test="${cart.promotions == null }">
+                         <td class="col-sm-1 col-md-1 text-center">none</td>
                         </c:if>
-                        <c:if test="${success }">
-                        <font color="green"><span class="glyphicon glyphicon-ok"></span><b> ${promo.promotioncode }</b> </font>
+                        <c:if test = "${cart.promotions != null }">
+                         <td class="col-sm-1 col-md-1 text-center" > ${cart.promotions.promotioncode }</td>
                         </c:if>
-                        <c:if test="${invalid }">
-                        <font color="red"><span class="glyphicon glyphicon-remove"></span> <b>Invalid Code</b> </font>
-                        </c:if>
-                        <input type="text" placeholder="Enter Promocodes" class="form-control cartItemQty" name="promoCode"/>
-                        <button style="display: none;" id="update-item" type="submit" class="btn btn-warning btn-xs">Update</button>
-                        </form>
-                        </td>
+                       
                         <td class="col-sm-1 col-md-1 text-center"><strong>Rs. ${cart.subtotal }</strong></td>
                       
 

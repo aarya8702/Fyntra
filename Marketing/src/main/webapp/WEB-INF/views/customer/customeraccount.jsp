@@ -38,9 +38,9 @@ if($(window).scrollTop()){
 		                </div>
 		            </div>
 		            <div class="row">
-		                <div class="col-md-12">
-		                    <div class = "jumbotron">
-		                     <h2>Welcome To My Account</h2>
+		                 <div class="col-md-12">
+		                    <div class = "jumbotron" style="padding: 50px 50px 50px 50px;">
+		                     <h2>Welcome, ${customer.firstname }</h2>
 		                    </div>
 		                </div>
 		            </div> 

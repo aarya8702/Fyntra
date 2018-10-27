@@ -75,8 +75,11 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/myAccount", method = RequestMethod.GET)
-	public ModelAndView myAccount() {
+	public ModelAndView myAccount(@AuthenticationPrincipal Principal principal) {
 		ModelAndView model = new ModelAndView("customer/customeraccount");
+		String email = principal.getName();
+		Customer customer = customerDao.findCustomerByEmail(email);
+		model.addObject("customer",customer);
 		return model;
 	}
 	

@@ -3,6 +3,9 @@ body{
 
 		font-family: Quicksand;
 }
+hr{
+	color: black;
+}
 
 .jumbotron {
 	background-color: grey;

@@ -28,6 +28,17 @@ public class CartItem {
 	@JoinColumn(name="shopping_cart_id")
 	private ShoppingCart shoppingCart;
 	
+	@OneToOne
+	private Promotions promotions;
+	
+
+	public Promotions getPromotions() {
+		return promotions;
+	}
+
+	public void setPromotions(Promotions promotions) {
+		this.promotions = promotions;
+	}
 
 	@ManyToOne
 	@JoinColumn(name="order_id")

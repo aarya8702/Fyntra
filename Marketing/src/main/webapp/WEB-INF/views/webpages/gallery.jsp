@@ -25,10 +25,13 @@ if($(window).scrollTop()){
 }
 })</script>
 </head>
-<body>
+<body bgcolor="white">
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <div class="container" style="margin-top: 80px;">
-
+<div class="row">
+ <div class="col-md-12"><h2>Products By: ${retailers.retailername }</h2></div>
+</div>
+<hr>
  <c:forEach items = "${list }" var = "product">
 <div class="col-xs-12 col-md-6 bootstrap snippets">
 	<!-- product -->

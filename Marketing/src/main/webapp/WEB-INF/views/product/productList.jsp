@@ -66,6 +66,8 @@ if($(window).scrollTop()){
 											<th>Main Category</th>
 											<th>Sub Category</th>
 											<th>Price</th>
+											<th>Quantity Left</th>
+											<th>Active</th>
 											<th>Delete</th>
 										</tr>
 									</thead>
@@ -79,6 +81,8 @@ if($(window).scrollTop()){
 												<td>${p.category.maincategory }</td>
 												<td>${p.subcategory1.subcategory1 }</td>
 												<td>${p.price }</td>
+												<td>${p.quantity }</td>
+												<td>${p.active }</td>
 												<td><a	href="<c:url value = '/retailer/product/delete/${p.productId }'></c:url>"><span class="glyphicon glyphicon-trash"></span></a></td>
 
 

@@ -220,7 +220,7 @@ public class CartController {
 				}
 			}
 		}
-
+        
 		model.addAttribute("cartItems", cartItems);
 
 		return "forward:/cart/listCart";
@@ -273,6 +273,10 @@ public class CartController {
 
 			Product product = cartItem.getProduct();
 			product.setQuantity(product.getQuantity() - cartItem.getQuanity());
+			if(product.getQuantity() == 0) {
+				
+				product.setActive(false);
+			}
 			productDao.update(product);// update
 			cartItem.setCustomerOrder(customerOrder);
 			cartItem.setShoppingCart(null);

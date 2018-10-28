@@ -1,5 +1,6 @@
 package org.marketing.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -29,7 +30,15 @@ public class ProductDaoImpl implements ProductDao{
 	@SuppressWarnings("unchecked")
 	public List<Product> listAllProducts() {
 		
-		return getSession().createQuery("from Product").list();
+		List<Product> products = (List<Product>) getSession().createQuery("from Product").list();
+		List<Product> activeProductList = new ArrayList<Product>();
+		for(Product product: products) {
+			if(product.isActive()) {
+				activeProductList.add(product);
+			}
+			
+		}
+		return activeProductList;
 	}
 
 	public void save(Product product) {

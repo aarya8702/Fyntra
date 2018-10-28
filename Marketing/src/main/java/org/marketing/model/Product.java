@@ -34,6 +34,8 @@ public class Product {
 	
 	private double price;
 	
+	private boolean active=true;
+
 	@ManyToOne
 	private Category category;
 	
@@ -116,6 +118,14 @@ public class Product {
 	public void setImageUrl1(String imageUrl1) {
 		this.imageUrl1 = imageUrl1;
 	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
 	public Category getCategory() {
 		return category;
@@ -149,6 +159,7 @@ public class Product {
 		this.retailer = retailer;
 	}
 	
+
 	
 
 	

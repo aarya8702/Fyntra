@@ -101,6 +101,7 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("webpages/gallery");
 		List<Product> products = retailerDao.listAllProductByRetailer(retId);
 		Retailer retailer = retailerDao.findRetailerById(retId);
+		model.addObject("name",true);
 		model.addObject("list",products);
 		model.addObject("retailers",retailer);
 		return model;

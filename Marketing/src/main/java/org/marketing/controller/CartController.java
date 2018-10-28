@@ -250,7 +250,6 @@ public class CartController {
 		userBilling.setState(customer.getBillingAddress().getState());
 		userBilling.setZipcode(customer.getBillingAddress().getZipcode());
 		userBilling.setCountry(customer.getBillingAddress().getCountry());
-		userBilling.setCustomerOrder(customerOrder);
 		userBillingDao.save(userBilling);
 
 		UserShipping userShipping = new UserShipping();
@@ -260,14 +259,16 @@ public class CartController {
 		userShipping.setState(customer.getShippingAddress().getState());
 		userShipping.setZipcode(customer.getShippingAddress().getZipcode());
 		userShipping.setCountry(customer.getShippingAddress().getCountry());
-		userShipping.setCustomerOrder(customerOrder);
 		userShippingDao.save(userShipping);
 
 		customerOrder.setUserBilling(userBilling);
 		customerOrder.setUserShipping(userShipping);
-		if (cartItems.size() > 0)
-			customerOrder = customerOrderDao.createCustomerOrder(customerOrder);
+		if (cartItems.size() > 0) {
+		         customerOrderDao.createCustomerOrder(customerOrder);
+		         userBilling.setCustomerOrder(customerOrder);
+		     	 userShipping.setCustomerOrder(customerOrder);
 
+		}
 		for (CartItem cartItem : cartItems) {
 
 			Product product = cartItem.getProduct();

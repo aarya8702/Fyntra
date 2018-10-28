@@ -65,7 +65,9 @@
                                     <c:if test="${success}">
 										<div class="alert alert-success" >Password Changed Succesfully</div>
                                     </c:if>
-									
+									<c:if test="${same}">
+										<div class="alert alert-danger" >Current Password & New Password cannot be same!</div>
+                                    </c:if>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>Current Password: </b></label>
 											<div class="col-md-4">

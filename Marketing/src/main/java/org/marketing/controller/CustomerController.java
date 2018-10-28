@@ -99,6 +99,11 @@ public class CustomerController {
 		if (newPass != null && !newPass.isEmpty() && !newPass.equals("")) {
 			String dbPassword = customer.getUser().getPassword();
 			if (dbPassword.equals(currentPassword) ) {
+				if(currentPassword.equals(newPass)) {
+					model.addAttribute("same",true);
+					System.out.println("cannot be same");
+					return "customer/customerpasswordchange";
+				}
 				customer.getUser().setPassword(newPass);
 				customerDao.updateCustomer(customer);
 				model.addAttribute("success",true);

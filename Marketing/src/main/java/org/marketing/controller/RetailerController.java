@@ -66,6 +66,12 @@ public class RetailerController {
 		if (newPass != null && !newPass.isEmpty() && !newPass.equals("")) {
 			String dbPassword = retailer.getUser().getPassword();
 			if (dbPassword.equals(currentPassword) ) {
+				if(currentPassword.equals(newPass)) {
+					model.addAttribute("same",true);
+					System.out.println("cannot be same");
+					return "retailer/retailerpasswordchange";
+
+				}
 				retailer.getUser().setPassword(newPass);
 				retailerDao.update(retailer);
 				model.addAttribute("success",true);

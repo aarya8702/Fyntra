@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -24,6 +25,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 @ComponentScan({"org.marketing.*"})
 @EnableWebMvc
 @Import(value = {SecurityConfig.class})
+@EnableScheduling
 public class WebConfig extends WebMvcConfigurerAdapter{
 	
 	 

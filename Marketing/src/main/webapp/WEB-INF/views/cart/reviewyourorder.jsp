@@ -87,7 +87,8 @@ if($(window).scrollTop()){
 									<th>Icon</th>
 									<th>Productname</th>
 									<th>Quantity</th>
-									<th>Price</th>
+									<th>Price/Quantity</th>
+									<th>Subtotal</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -97,7 +98,8 @@ if($(window).scrollTop()){
 											src="<c:url value='/resources/${c.product.imageUrl1 }'></c:url>" /></td>
 										<td>${c.product.productname }</td>
 										<td>${c.quanity }</td>
-										<td>${c.product.price*c.quanity}</td>
+										<td>${c.product.price}</td>
+										<td>${c.subtotal}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

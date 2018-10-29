@@ -10,6 +10,8 @@ import org.marketing.dao.PasswordResetTokenDao;
 import org.marketing.model.PasswordResetToken;
 import org.marketing.model.Retailer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -29,10 +31,10 @@ public class PasswordResetTokenDaoImpl implements PasswordResetTokenDao{
 		return (PasswordResetToken)getSession().createQuery("from PasswordResetToken as a where a.token = :id").setString("id", token).list().get(0);
 	}
 	
-	
+//	@Scheduled
 	public void deleteAllExpiredSince(Date now) {
 		
-		getSession().createQuery("delete from PasswordResetToken t where t.expiryDate <= ?1").executeUpdate();
+		getSession().createQuery("delete from PasswordResetToken as t where t.expiryDate <= :now").setParameter("now", now).executeUpdate();
 		
 	}
 

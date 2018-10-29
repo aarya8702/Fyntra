@@ -174,6 +174,7 @@ public class CartController {
 		User user = cartItemDao.getUser(email);
 		Customer customer = user.getCustomer();
 		customer.setShippingAddress(shippingAddress);
+		customerDao.updateCustomer(customer);
 
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);

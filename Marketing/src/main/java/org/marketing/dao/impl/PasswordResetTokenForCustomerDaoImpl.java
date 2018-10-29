@@ -32,7 +32,7 @@ public class PasswordResetTokenForCustomerDaoImpl implements PasswordResetTokenF
 	
 	public void deleteAllExpiredSince(Date now) {
 		
-		getSession().createQuery("delete from PasswordResetTokenCustomer t where t.expiryDate <= ?1").executeUpdate();
+		getSession().createQuery("delete from PasswordResetTokenCustomer t where t.expiryDate <= :now").setParameter("now", now).executeUpdate();
 		
 	}
 

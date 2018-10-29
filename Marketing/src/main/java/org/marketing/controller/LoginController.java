@@ -1,6 +1,7 @@
 package org.marketing.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -26,6 +27,7 @@ import org.marketing.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -209,6 +211,13 @@ public class LoginController {
 		return "webpages/forgotPasswordRetailer";
 
 	}
+	
+	@Scheduled(cron = "0 45 16 * * ?")
+	public void deleteExpiredTokenRetailer() {
+		
+		Date now = new Date();
+		passwordResetTokenDao.deleteAllExpiredSince(now);
+	}
 
 	@RequestMapping(value = "/passwordReset")
 	public String passwordResetMail(Locale locale, @RequestParam("token") String token, Model model) {
@@ -352,6 +361,13 @@ public class LoginController {
 
 	}
 
+	@Scheduled(cron = "0 45 16 * * ?")
+	public void deleteExpiredTokenCustomer() {
+		
+		Date now = new Date();
+	    passwordResetTokenCustomerDao.deleteAllExpiredSince(now);
+	}
+	
 	@RequestMapping(value = "/passwordResetCustomer")
 	public String passwordResetMailCustomer(Locale locale, @RequestParam("token") String token, Model model) {
 

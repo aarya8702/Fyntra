@@ -11,13 +11,25 @@
 
 <title>Fashion Store(Admin Portal)</title>
 
-<link href="<c:url value ='/resources/css/bootstrap.min.css'></c:url>" rel="stylesheet" />
-<link href="<c:url value='/resources/css/style.css'></c:url>" rel="stylesheet" />
-<link href="<c:url value = '/resources/css/jquery.dataTables.min.css'></c:url>" rel="stylesheet" />
-<link href="<c:url value = '/resources/css/dataTables.bootstrap.min.css'></c:url>" rel="stylesheet" />
-<link href="<c:url value = '/resources/css/font-awesome.min.css'></c:url>" rel="stylesheet" />
+<link href="<c:url value ='/resources/css/bootstrap.min.css'></c:url>"
+	rel="stylesheet" />
+<link href="<c:url value='/resources/css/style.css'></c:url>"
+	rel="stylesheet" />
+<link
+	href="<c:url value = '/resources/css/jquery.dataTables.min.css'></c:url>"
+	rel="stylesheet" />
+<link
+	href="<c:url value = '/resources/css/dataTables.bootstrap.min.css'></c:url>"
+	rel="stylesheet" />
+<link
+	href="<c:url value = '/resources/css/font-awesome.min.css'></c:url>"
+	rel="stylesheet" />
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+<script>
+	tinymce.init({
+		selector : 'textarea'
+	});
+</script>
 
 <style>
 .navbar-default {
@@ -115,7 +127,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<c:url value='/admin/home'></c:url>">Admin Portal</a>
+				<a class="navbar-brand" href="<c:url value='/admin/home'></c:url>">Admin
+					Portal</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -134,16 +147,18 @@
 						<ul class="dropdown-menu">
 							<li><a href="<c:url value = '/admin/category/list'></c:url>">View
 									Category List</a></li>
-							<li><a href="<c:url value = '/admin/category/add'></c:url>">Add New Category</a></li>
+							<li><a href="<c:url value = '/admin/category/add'></c:url>">Add
+									New Category</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Sub Category<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value = '/admin/subcat1/list'></c:url>" >View
+							<li><a href="<c:url value = '/admin/subcat1/list'></c:url>">View
 									SubCategory List</a></li>
-							<li><a href="<c:url value = '/admin/subcat1/add'></c:url>">Add New SubCategory</a></li>
+							<li><a href="<c:url value = '/admin/subcat1/add'></c:url>">Add
+									New SubCategory</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -151,7 +166,16 @@
 						<ul class="dropdown-menu">
 							<li><a href="<c:url value = '/admin/retailer/list'></c:url>">View
 									Retailer List</a></li>
-							<li><a href="<c:url value = '/admin/retailer/add'></c:url>">Add New Retailer</a></li>
+							<li><a href="<c:url value = '/admin/retailer/add'></c:url>">Add
+									New Retailer</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Customer<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value = '/admin/customer/list'></c:url>">View
+									Customer List</a></li>
+							<li><a href="<c:url value = '/admin/customer/add'></c:url>">Add New Customer</a></li>
 						</ul></li>
 
 

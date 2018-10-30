@@ -45,6 +45,12 @@ public class RetailerDaoImpl implements RetailerDao {
 		getSession().delete(retailer);
 
 	}
+	
+	public void update(Retailer retailer) {
+		
+		getSession().update(retailer);
+		
+	}
 
 	public Retailer findRetailerById(int retId) {
 		Retailer retailer = (Retailer) getSession().get(Retailer.class, retId);
@@ -63,16 +69,13 @@ public class RetailerDaoImpl implements RetailerDao {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Retailer> ListRetailerById(int retId) {
-
-		return getSession().createQuery("from Retailer as a where a.retId = :id").setInteger("id", retId).list();
-	}
-
-	public void update(Retailer retailer) {
 	
-		getSession().update(retailer);
-		
-	}
+//	@SuppressWarnings("unchecked")
+//	public List<Retailer> ListRetailerById(int retId) {
+//
+//		return getSession().createQuery("from Retailer as a where a.retId = :id").setInteger("id", retId).list();
+//	}
+//
+
 
 }

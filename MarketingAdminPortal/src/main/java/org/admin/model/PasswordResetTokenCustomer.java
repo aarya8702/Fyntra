@@ -82,6 +82,7 @@ public class PasswordResetTokenCustomer {
 	public Date getExpiryDate() {
 		return expiryDate;
 	}
+	///
 
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;

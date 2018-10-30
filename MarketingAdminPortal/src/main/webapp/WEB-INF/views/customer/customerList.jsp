@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Mobirise v4.8.1, mobirise.com">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<title>Retailer Details</title>
+<title>customerailer Details</title>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -27,30 +27,30 @@ $(document).ready(function() {
 <body>
 	<!-- List of Products , productsAttr is the name of the model attribute -->
 	<div class="container">
-	<h1>Retailer's Details</h1>
+	<h1>Customer's Details</h1>
 	<br>
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Retailer's name</th>
+				<th>Customer's name</th>
 				<th>Email</th>
-				<th>Contact Person</th>
-                <th>Phonenumber</th>
+				<th>Phoneumber</th>
+                <th>Email status</th>
                 <th>Info</th>			
 				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
 		<!-- JSTL tag for iterating list of products -->
-		<c:forEach items="${list}" var="ret"><!-- p is referring to Product -->
+		<c:forEach items="${list}" var="customer"><!-- p is referring to Product -->
 			<tr>
-			    <spring:url value="/admin/retailer/info/${ret.retId }" var="infoUrl"/>
-				<td>${ret.retailername }</td>
-				<td>${ret.user.email }</td>
-				<td>${ret.contactperson }</td>
-				<td>${ret.phonenumber }</td>
+			    <spring:url value="/admin/customer/info/${customer.custId }" var="infoUrl"/>
+				<td>${customer.firstname } ${customer.lastname }</td>
+				<td>${customer.user.email }</td>
+				<td>${customer.phonenumber }</td>
+				<td>${customer.user.isEmailVerified }</td>
 				<td><a href="${infoUrl}"><span class=" glyphicon glyphicon-info-sign"></span></a></td>
-				<spring:url value="/admin/retailer/delete/${ret.retId }" var="updateUrl"/>
+				<spring:url value="/admin/customer/delete/${customer.custId }" var="updateUrl"/>
 				<td><a href="${updateUrl }"><span class="glyphicon glyphicon-trash"></span></a></td>
 				
 			</tr>

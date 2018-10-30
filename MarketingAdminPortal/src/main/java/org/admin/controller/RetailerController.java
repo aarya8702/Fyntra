@@ -63,7 +63,8 @@ public class RetailerController {
 	@RequestMapping(value = "/retailer/update",method = RequestMethod.POST)
 	public ModelAndView updateRetailer(@ModelAttribute("retailer") Retailer retailer) {
 		
-		
+		retailer.getUser().setEnabled(true);
+		retailer.getUser().setIsEmailVerified("Verified");
 		retailerDao.update(retailer);
 		return new ModelAndView("redirect:/admin/retailer/list");
 	}
@@ -79,7 +80,7 @@ public class RetailerController {
 	public ModelAndView retailerInfo(@PathVariable("retId") int retId) {
 		
 		ModelAndView model = new ModelAndView("retailer/retailerInfo");
-		List<Retailer> retailer = retailerDao.ListRetailerById(retId);
+		Retailer retailer = retailerDao.findRetailerById(retId);
 		model.addObject("list",retailer);
 		return model;
 	}

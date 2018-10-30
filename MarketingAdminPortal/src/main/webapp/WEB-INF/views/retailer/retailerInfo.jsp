@@ -11,41 +11,40 @@
 </head>
 <body>
  <div class="container">
- <c:forEach items = "${list}" var = "ret">
+
 		<div>
 			
 			<ol class="breadcrumb">
 				<li><a href="<c:url value='/admin/retailer/list'></c:url>"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Go back</a></li>
-				<li><a href="<c:url value='/admin/retailer/update/${ret.retId}'></c:url>">Edit</a></li>
+				<li><a href="<c:url value='/admin/retailer/update/${list.retId}'></c:url>">Edit</a></li>
 			</ol>	
 		</div>
 		<div class="row">
 			<div class="col-xs-9">
 		
 			
-				<h3 >${ret.retailername}</h3>
+				<h3 >${list.retailername}</h3>
 				<div class="row">
 					<div class="col-xs-6">
-						<p><strong>Email Address: </strong><span>${ret.user.email}</span></p>
-						<p><strong>Password: </strong><span>${ret.user.password}</span></p>
-						<p><strong>Contact Person: </strong><span>${ret.contactperson}</span></p>
-						<p><strong>GTIN: </strong><span>${ret.gtin}</span></p>
-						<p><strong>Phonenumber: </strong><span>${ret.phonenumber}</span></p>
-						<p><strong>Alternatenumber: </strong><span>${ret.alternatenumber}</span></p>
+						<p><strong>Email Address: </strong><span>${list.user.email}</span></p>
+						<p><strong>Password: </strong><span>${list.user.password}</span></p>
+						<p><strong>Contact Person: </strong><span>${list.contactperson}</span></p>
+						<p><strong>GTIN: </strong><span>${list.gtin}</span></p>
+						<p><strong>Phonenumber: </strong><span>${list.phonenumber}</span></p>
+						<p><strong>Alternatenumber: </strong><span>${list.alternatenumber}</span></p>
 					</div>
 					<div class="col-xs-6">
 					<h3 style = "margin-top:-30px;">Store Location</h3>
-						<p><strong>Street: </strong><span>${ret.street1},${ret.route1 }</span></p>
-						<p><strong>City: </strong><span>${ret.city1}</span></p>
-						<p><strong>State: </strong><span>${ret.state1}</span></p>
-						<p><strong>Zipcode: </strong><span>${ret.zipcode1}</span></p>
-						<p><strong>Country: </strong><span>${ret.country1}</span></p>
+						<p><strong>Street: </strong><span>${list.street1},${list.route1 }</span></p>
+						<p><strong>City: </strong><span>${list.city1}</span></p>
+						<p><strong>State: </strong><span>${list.state1}</span></p>
+						<p><strong>Zipcode: </strong><span>${list.zipcode1}</span></p>
+						<p><strong>Country: </strong><span>${list.country1}</span></p>
 					</div>
 				</div>
 				
 			</div>
 		</div>
-		</c:forEach>
 </div>
 </body>
 </html>

@@ -19,5 +19,5 @@ public interface RetailerDao {
 	
 	public boolean isEmailUnique(String email);
 	
-	public List<Retailer> ListRetailerById(int retId);
+//	public List<Retailer> ListRetailerById(int retId);
 }

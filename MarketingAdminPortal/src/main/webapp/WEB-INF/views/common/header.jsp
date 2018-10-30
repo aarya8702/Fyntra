@@ -177,6 +177,12 @@
 									Customer List</a></li>
 							<li><a href="<c:url value = '/admin/customer/add'></c:url>">Add New Customer</a></li>
 						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Order Management<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<c:url value = '/admin/order/list'></c:url>">View Orders List</a></li>
+						</ul></li>	
 
 
 				</ul>

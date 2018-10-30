@@ -243,6 +243,7 @@ public class CartController {
 		customerOrder.setOrderDate(new Date());
 		customerOrder.setCustomer(customer);
 		customerOrder.setOrderTotal(shoppingCart.getGrandTotal());
+		customerOrder.setOrderStatus("Created");
 
 		UserBilling userBilling = new UserBilling();
 		userBilling.setApartmentnumber(customer.getBillingAddress().getApartmentnumber());

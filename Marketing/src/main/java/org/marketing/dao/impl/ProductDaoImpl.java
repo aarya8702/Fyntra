@@ -107,7 +107,7 @@ public class ProductDaoImpl implements ProductDao{
 	public List<Product> blurrySearch(String searchTerm) {
 
 
-		return getSession().createQuery("from Product as a where a.productname like :search or a.category.maincategory like :search or a.description like :search").setString("search", "%" + searchTerm + "%").list();
+		return getSession().createQuery("from Product as a where a.productname like :search or a.category.maincategory like :search or a.subcategory1.subcategory1 like :search or a.description like :search").setString("search", "%" + searchTerm + "%").list();
 
 	}
 	

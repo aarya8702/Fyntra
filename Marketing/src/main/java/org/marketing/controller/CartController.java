@@ -190,14 +190,20 @@ public class CartController {
 
 		String email = principal.getName();
 
+		if(promoCode.equals("")) {
+			return "redirect:/cart/listCart";
+		}
+		
 		Promotions promo = cartItemDao.findPromoCodeByName(promoCode);
-		model.addAttribute("promoCode", promoCode);
-
+		
+		
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
 
+		
+		
 		for (CartItem cartItem : cartItems) {
-
+			
 			if (promoCode.equals(promo.getPromotioncode())) {
 
 				

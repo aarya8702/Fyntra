@@ -141,11 +141,11 @@ public class RetailerController {
 
 	}
 
-	@RequestMapping(value = "/apply/{pid}", method = RequestMethod.GET)
-	public ModelAndView applyPromoCode(@PathVariable("pid") int pid, @AuthenticationPrincipal Principal principal) {
+	@RequestMapping(value = "/apply/{promotioncode}", method = RequestMethod.GET)
+	public ModelAndView applyPromoCode(@PathVariable("promotioncode") String code, @AuthenticationPrincipal Principal principal) {
 
 		String email = principal.getName();
-		Promotions promotions = promotionDao.findPromoById(pid);
+		Promotions promotions = promotionDao.findPromoById(code);
 
 		List<Product> product = retailerDao.getProductDetails(email);
 
@@ -160,8 +160,8 @@ public class RetailerController {
 
 	}
 
-	@RequestMapping(value = "/cancelPromoCode/{pid}", method = RequestMethod.GET)
-	public ModelAndView cancelPromoCode(@PathVariable("pid") int pid, @AuthenticationPrincipal Principal principal) {
+	@RequestMapping(value = "/cancelPromoCode/{promotioncode}", method = RequestMethod.GET)
+	public ModelAndView cancelPromoCode(@PathVariable("promotioncode") String code, @AuthenticationPrincipal Principal principal) {
 
 		String email = principal.getName();
 
@@ -177,10 +177,10 @@ public class RetailerController {
 
 	}
 
-	@RequestMapping(value = "/deleteCode/{pid}", method = RequestMethod.GET)
-	public ModelAndView deletePromoCode(@PathVariable("pid") int pid) {
+	@RequestMapping(value = "/deleteCode/{promotioncode}", method = RequestMethod.GET)
+	public ModelAndView deletePromoCode(@PathVariable("promotioncode") String code) {
 
-		Promotions promotions = promotionDao.findPromoById(pid);
+		Promotions promotions = promotionDao.findPromoById(code);
 		promotionDao.deletePromoCode(promotions);
 		return new ModelAndView("redirect:/retailer/promotionlist");
 	}

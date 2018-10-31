@@ -45,7 +45,6 @@ if($(window).scrollTop()){
 								<spring:url value="/retailer/promoSave" var="saveUrl" />
 								<form:form action="${saveUrl }" method="post"
 									class="form-horizontal" modelAttribute="promotionForm" enctype = "multipart/form-data">
-									<form:hidden path="pid" />
 									<fieldset>
 									
 
@@ -61,6 +60,18 @@ if($(window).scrollTop()){
 											<div class="col-md-8">
 												<form:textarea type="text" path="description"
 													class="form-control" placeholder="Enter Description"></form:textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label"><b>Category: </b></label>
+											<div class="col-md-8">
+												<form:select path="category.maincategory"
+													class="form-control">
+													    <form:option value="null">none</form:option>
+													<c:forEach items="${categories }" var="c">
+														<form:option value="${c.maincategory }">${c.maincategory }</form:option>
+													</c:forEach>
+												</form:select>
 											</div>
 										</div>
 										<div class="form-group">

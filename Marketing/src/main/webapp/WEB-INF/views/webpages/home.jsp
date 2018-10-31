@@ -131,7 +131,7 @@
 								</div>
 								<div class="panel-body" style="height: 150px; padding: 0px;">
 
-									<div id="${promo.pid}" class="carousel slide"
+									<div id="${promo.promotioncode}" class="carousel slide"
 										data-ride="carousel">
 										<!-- Indicators -->
 
@@ -146,7 +146,7 @@
 												
 											</div>
 											<c:forEach items="${product }" var="p">
-												<c:if test="${p.retailer.retId == retailer.retId }">
+												<c:if test="${p.retailer.retId == retailer.retId && p.category.maincategory == promo.category.maincategory}">
 													<div class="item ">
 														<img
 															src="<c:url value='/resources/${p.imageUrl1 }'></c:url>"
@@ -165,8 +165,11 @@
 									<b>Discount:</b> ${promo.discount }%
 								</div>
 								<div class="panel-footer text-center">
+									<b>Category:</b> ${promo.category.maincategory }
+								</div>
+								<div class="panel-footer text-center">
 									<a class="btn btn-danger"
-										href="<c:url value='/product-by-${retailer.retId}'></c:url>">browse
+										href="<c:url value='/product-by-${promo.category.maincategory}-and-${retailer.retId}'></c:url>">browse
 										more</a>
 								</div>
 							</div>

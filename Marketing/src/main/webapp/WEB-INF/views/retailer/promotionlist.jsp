@@ -67,6 +67,7 @@ if($(window).scrollTop()){
 										<tr>
 											<th>Promotion Code</th>
 											<th>Description</th>
+											<th>category</th>
 											<th>Discount Rate</th>
 											<th>Apply</th>
 											<th>Cancel</th>
@@ -81,12 +82,13 @@ if($(window).scrollTop()){
 
 												<td>${p.promotioncode }</td>
 												<td>${p.description }</td>
+												<td>${p.category.maincategory }</td>
 												<td>${p.discount } %</td>
-											    <spring:url value="/retailer/apply/${p.pid }" var = "apply"/>
+											    <spring:url value="/retailer/apply/${p.promotioncode }" var = "apply"/>
 											    <td><a href="${apply }" class = "btn btn-success">Apply This Code</a></td>
-											    <spring:url value="/retailer/cancelPromoCode/${p.pid }" var = "cancel"/>
+											    <spring:url value="/retailer/cancelPromoCode/${p.promotioncode }" var = "cancel"/>
 											    <td><a href="${cancel }" class = "btn btn-danger">Reset Prices</a></td>
-											    <spring:url value="/retailer/deleteCode/${p.pid }" var = "delete"/>
+											    <spring:url value="/retailer/deleteCode/${p.promotioncode }" var = "delete"/>
 											    <td><a href="${delete }" class = "btn btn-delete"><span class = "glyphicon glyphicon-trash"></span></a></td>
 											</tr>
 										</c:forEach>

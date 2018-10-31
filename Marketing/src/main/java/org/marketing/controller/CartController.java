@@ -12,6 +12,7 @@ import org.marketing.dao.CartItemDao;
 import org.marketing.dao.CustomerDao;
 import org.marketing.dao.CustomerOrderDao;
 import org.marketing.dao.ProductDao;
+import org.marketing.dao.PromotionDao;
 import org.marketing.dao.ShoppingCartDao;
 import org.marketing.dao.UserBillingDao;
 import org.marketing.dao.UserShippingDao;
@@ -67,6 +68,9 @@ public class CartController {
 
 	@Autowired
 	private UserBillingDao userBillingDao;
+	
+	@Autowired
+	private PromotionDao promotionDao;
 
 	@RequestMapping(value = "/addToCart/{productId}", method = RequestMethod.POST)
 	public String addToCart(@PathVariable("productId") int productId, @AuthenticationPrincipal Principal principal,
@@ -190,47 +194,53 @@ public class CartController {
 
 		String email = principal.getName();
 
-		if(promoCode.equals("")) {
-			return "redirect:/cart/listCart";
+		
+		
+		Promotions promo = promotionDao.findPromoById(promoCode);
+		
+		if(promo == null) {
+			return "redirect:/cart/reviewYourOrder";
 		}
-		
-		Promotions promo = cartItemDao.findPromoCodeByName(promoCode);
-		
 		
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
 
+		BigDecimal cartTotal = new BigDecimal(0);
 		
+		BigDecimal oldCartTotal = new BigDecimal(0);
+		
+		if (promoCode.equals(promo.getPromotioncode())) {
 		
 		for (CartItem cartItem : cartItems) {
 			
-			if (promoCode.equals(promo.getPromotioncode())) {
+				if (cartItem.getProduct().getRetailer().getRetailername().equals(promo.getRetailer().getRetailername()) && cartItem.getProduct().getCategory().getMaincategory().equals(promo.getCategory().getMaincategory())) {
 
-				
-				if (cartItem.getProduct().getRetailer().getRetailername()
-						.equals(promo.getRetailer().getRetailername())) {
-
-					if (cartItem.getPromotions() != null) {
-						model.addAttribute("exists", true);
+					if(cartItem.getOldSubTotal() != null) {
 						System.out.println("Already Applied");
-						return "forward:/cart/listCart";
+						return "redirect:/cart/reviewYourOrder";
+						
 					}
 					
-					cartItem.setPromotions(promo);
-					BigDecimal discount = cartItem.getSubtotal()
-							.multiply(new BigDecimal(promo.getDiscount()).divide(new BigDecimal(100)));
+				
+					BigDecimal discount = cartItem.getSubtotal().multiply(new BigDecimal(promo.getDiscount()).divide(new BigDecimal(100)));
+					
+					cartItem.setOldSubTotal(cartItem.getSubtotal());
 					cartItem.setSubtotal(cartItem.getSubtotal().subtract(discount));
 					cartItemDao.saveOrUpdate(cartItem);
 					System.out.println("promoRate: " + promo.getDiscount());
 					System.out.println("Discount " + discount);
-
 				}
+				
+				cartTotal = cartTotal.add(cartItem.getSubtotal());
 			}
 		}
         
+		shoppingCart.setGrandTotal(cartTotal);
+		shoppingCart.setOldGrandTotal(oldCartTotal);
+		shoppingCartDao.updateShoppingCart(shoppingCart);
 		model.addAttribute("cartItems", cartItems);
 
-		return "forward:/cart/listCart";
+		return "forward:/cart/reviewYourOrder";
 	}
 
 	@RequestMapping(value = "/createorder")

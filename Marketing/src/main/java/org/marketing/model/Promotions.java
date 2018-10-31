@@ -12,9 +12,6 @@ import javax.persistence.Table;
 public class Promotions {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pid;
-	
 	private String promotioncode;
 	
 	private String description;
@@ -26,6 +23,9 @@ public class Promotions {
 	
 	@ManyToOne
 	private Retailer retailer;
+	
+	@ManyToOne
+	private Category category;
 
 	public Retailer getRetailer() {
 		return retailer;
@@ -33,14 +33,6 @@ public class Promotions {
 
 	public void setRetailer(Retailer retailer) {
 		this.retailer = retailer;
-	}
-
-	public int getPid() {
-		return pid;
-	}
-
-	public void setPid(int pid) {
-		this.pid = pid;
 	}
 
 	public String getDescription() {
@@ -74,5 +66,15 @@ public class Promotions {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
+	
 	
 }

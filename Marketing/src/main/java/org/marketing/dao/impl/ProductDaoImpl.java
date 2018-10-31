@@ -110,6 +110,15 @@ public class ProductDaoImpl implements ProductDao{
 		return getSession().createQuery("from Product as a where a.productname like :search or a.category.maincategory like :search or a.subcategory1.subcategory1 like :search or a.description like :search").setString("search", "%" + searchTerm + "%").list();
 
 	}
+
+
+
+	@SuppressWarnings("unchecked")
+	public List<Product> ListProductsByCategoryAndRetailer(int retId, String mainCategory) {
+
+		List<Product> products = getSession().createQuery("from Product as a where a.retailer.retId = :id and a.category.maincategory = :category").setInteger("id", retId).setString("category", mainCategory).list();
+		return products;
+	}
 	
 
 

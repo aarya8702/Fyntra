@@ -31,6 +31,8 @@ public interface ProductDao {
 	List<Product> blurrySearch(String searchTerm);
 	
 	public List<Product> findProductsBySubCat1(String subcategory1);
+	
+	public List<Product> ListProductsByCategoryAndRetailer(int retId,String mainCategory);
 
 
 	

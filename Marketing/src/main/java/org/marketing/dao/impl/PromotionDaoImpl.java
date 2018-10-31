@@ -45,9 +45,9 @@ public class PromotionDaoImpl implements PromotionDao{
 		getSession().saveOrUpdate(promotions);
 	}
 
-	public Promotions findPromoById(int pid) {
+	public Promotions findPromoById(String code) {
 
-		Promotions promotions = (Promotions)getSession().get(Promotions.class, pid);
+		Promotions promotions = (Promotions)getSession().get(Promotions.class, code);
 		return promotions;
 	}
 

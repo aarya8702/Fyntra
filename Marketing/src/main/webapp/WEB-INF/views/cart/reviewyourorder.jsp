@@ -117,12 +117,18 @@ if($(window).scrollTop()){
 					</div>
 				</div>
 				<c:forEach items="${cartItems }" var="c">
-
+                  <c:set var="total" value="${total + (c.product.price*c.quanity) }"></c:set>
 				</c:forEach>
 				<div class="row">
 					<div class="col-md-2">Items:</div>
+					
 					<div class="col-md-6"></div>
-					<div class="col-md-4">Rs. ${shoppingCart.grandTotal }</div>
+					<div class="col-md-4">Rs. ${total}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">Discount: </div>
+					<div class="col-md-6"></div>
+				    <div class="col-md-4">  -Rs.${total - shoppingCart.grandTotal}</div>
 				</div>
 				<div class="row">
 					<div class="col-md-2">Delivery:</div>

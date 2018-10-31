@@ -99,12 +99,12 @@ public class HomeController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/product-by-{retId}",method = RequestMethod.GET)
-	public ModelAndView productsByRetailer(@PathVariable("retId") int retId) {
+	@RequestMapping(value = "/product-by-{maincategory}-and-{retId}",method = RequestMethod.GET)
+	public ModelAndView productsByRetailerAndCategory(@PathVariable("maincategory") String mainCategory,@PathVariable("retId") int retId) {
 		
 		ModelAndView model = new ModelAndView("webpages/gallery");
-		List<Product> products = retailerDao.listAllProductByRetailer(retId);
 		Retailer retailer = retailerDao.findRetailerById(retId);
+		List<Product> products = productDao.ListProductsByCategoryAndRetailer(retId, mainCategory);
 		model.addObject("name",true);
 		model.addObject("list",products);
 		model.addObject("retailers",retailer);

@@ -83,7 +83,7 @@ if($(window).scrollTop()){
 </c:forEach>
 </div>
 <div class="container">
-		<c:forEach items="${retailer }" var="retailer">
+			<c:forEach items="${retailer }" var="retailer">
 		<hr style="margin-bottom: 0px;">
 			<div class="row">
 				<div class="col-md-8" style="">
@@ -96,28 +96,21 @@ if($(window).scrollTop()){
 			<hr style="margin-top: 0px;">
 			<div class="row">
 				<c:forEach items="${promo }" var="promo">
-					<c:if
-						test="${promo.retailer.retailername == retailer.retailername}">
+					<c:if test="${promo.retailer.retailername == retailer.retailername}">
 						<div class="col-sm-4" style="padding-left: 65px;">
 							<div class="panel panel-primary" style="width: 250px;">
-								<div class="panel-heading text-center" style="height: 100px;">${promo.description }</div>
-								<div class="panel-heading text-center" style="background-color: white;">
+								<div class="panel-heading" style="height: 100px;">${promo.description }</div>
+								<div class="panel-heading" style="background-color: white;">
 									<b><font color="black">Products by
 											${retailer.retailername }</font></b>
 								</div>
 								<div class="panel-body" style="height: 150px; padding: 0px;">
 
-									<div id="${promo.pid}" class="carousel slide"
+									<div id="${promo.promotioncode}" class="carousel slide"
 										data-ride="carousel">
 										<!-- Indicators -->
 
-										<ol class="carousel-indicators">
-											<li data-target="#${promo.pid}" data-slide-to="0"
-												class="active"></li>
-										    <c:forEach items="${product }" var="size">
-											<li data-target="#${promo.pid}" data-slide-to="${p.productId }"></li>
-											</c:forEach>
-										</ol>
+									
 
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner">
@@ -125,9 +118,10 @@ if($(window).scrollTop()){
 												<img
 													src="<c:url value='/resources/images/carousel1.jpeg'></c:url>"
 													alt="Los Angeles" style="width: 360px; height: 150px;">
+												
 											</div>
 											<c:forEach items="${product }" var="p">
-												<c:if test="${p.retailer.retId == retailer.retId }">
+												<c:if test="${p.retailer.retId == retailer.retId && p.category.maincategory == promo.category.maincategory}">
 													<div class="item ">
 														<img
 															src="<c:url value='/resources/${p.imageUrl1 }'></c:url>"
@@ -146,8 +140,11 @@ if($(window).scrollTop()){
 									<b>Discount:</b> ${promo.discount }%
 								</div>
 								<div class="panel-footer text-center">
+									<b>Category:</b> ${promo.category.maincategory }
+								</div>
+								<div class="panel-footer text-center">
 									<a class="btn btn-danger"
-										href="<c:url value='/product-by-${retailer.retId}'></c:url>">browse
+										href="<c:url value='/product-by-${promo.category.maincategory}-and-${retailer.retId}'></c:url>">browse
 										more</a>
 								</div>
 							</div>

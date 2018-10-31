@@ -80,17 +80,7 @@ $(document).ready(function(){
          </div>
         </div>
         <br>
-         <form action="<c:url value='/cart/applyCode'></c:url>" >
-        <div class="row">
-         <div class="col-md-2" style="padding-top: 5px;">Apply Promo codes:</div>
-         <div class="col-md-2">
-         <input type="text" placeholder="Enter Promocodes" class="form-control" name="promoCode"/>
-         </div>
-         <div class="col-md-2">
-         <button type="submit" class="btn btn-primary">Apply</button>
-         </div>
-        </div>
-        </form> 
+
         <br>   
             <table class="table table-hover" width = "100%">
                 <thead>
@@ -99,7 +89,6 @@ $(document).ready(function(){
                         <th>Category</th>
                         <th class = "text-center">Quantity</th>
                         <th class="text-center">Price/Quantity</th>
-                        <th class = "text-center">Promocodes</th>
                         <th class = "text-center">SubTotal</th>
                         
                         
@@ -124,12 +113,6 @@ $(document).ready(function(){
                         <td class="col-sm-1 col-md-1" style="text-align: center"> ${cart.quanity }</td>
                           <td class="col-sm-1 col-md-1" style="text-align: center"> ${cart.product.price }</td>
                 
-                         <c:if test="${cart.promotions == null }">
-                         <td class="col-sm-1 col-md-1 text-center">none</td>
-                        </c:if>
-                        <c:if test = "${cart.promotions != null }">
-                         <td class="col-sm-1 col-md-1 text-center" > ${cart.promotions.promotioncode }</td>
-                        </c:if>
                        
                         <td class="col-sm-1 col-md-1 text-center"><strong>Rs. ${cart.subtotal }</strong></td>
                       

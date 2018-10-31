@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.marketing.dao.CategoryDao;
 import org.marketing.dao.ProductDao;
+import org.marketing.dao.PromotionDao;
 import org.marketing.dao.RetailerDao;
 import org.marketing.dao.SubCat1Dao;
 import org.marketing.model.Category;
@@ -38,6 +39,9 @@ public class HomeController {
 	@Autowired
 	private RetailerDao retailerDao;
 	
+	@Autowired
+	private PromotionDao promotionDao;
+	
 	@RequestMapping(value="/404")
 	public String notFoundPage(){
 	
@@ -49,7 +53,7 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("webpages/home");
 		session.setAttribute("categories", categoryDao.listAllCategories());
 		session.setAttribute("subcat1",subCat1Dao.listAllSubCat1());
-		List<Promotions> promotions = retailerDao.ListAllPromoCode();
+		List<Promotions> promotions = promotionDao.ListAllPromoCode();
 		List<Retailer> retailer = retailerDao.listAllRetailer();
 		List<Product> product = productDao.listAllProducts();
 		model.addObject("product",product);

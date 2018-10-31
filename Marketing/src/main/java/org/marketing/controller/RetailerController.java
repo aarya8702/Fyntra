@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.marketing.dao.ProductDao;
+import org.marketing.dao.PromotionDao;
 import org.marketing.dao.RetailerDao;
 import org.marketing.model.Product;
 import org.marketing.model.Promotions;
@@ -28,6 +29,9 @@ public class RetailerController {
 
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private PromotionDao promotionDao;
 
 	@RequestMapping(value = "/updateRetailer", method = RequestMethod.GET)
 	public ModelAndView updateRetailerForm(
@@ -122,7 +126,7 @@ public class RetailerController {
 		Retailer retailer = retailerDao.findRetailerByEmail(email);
 		promotions.setRetailer(retailer);
 		promotions.setUser(user);
-		retailerDao.addPromocode(promotions);
+		promotionDao.addPromocode(promotions);
 		return new ModelAndView("redirect:/retailer/promotionlist");
 	}
 
@@ -131,7 +135,7 @@ public class RetailerController {
 
 		ModelAndView model = new ModelAndView("retailer/promotionlist");
 		String email = principal.getName();
-		List<Promotions> promotions = retailerDao.getPromoDetails(email);
+		List<Promotions> promotions = promotionDao.getPromoDetails(email);
 		model.addObject("list", promotions);
 		return model;
 
@@ -141,7 +145,7 @@ public class RetailerController {
 	public ModelAndView applyPromoCode(@PathVariable("pid") int pid, @AuthenticationPrincipal Principal principal) {
 
 		String email = principal.getName();
-		Promotions promotions = retailerDao.findPromoById(pid);
+		Promotions promotions = promotionDao.findPromoById(pid);
 
 		List<Product> product = retailerDao.getProductDetails(email);
 
@@ -176,8 +180,8 @@ public class RetailerController {
 	@RequestMapping(value = "/deleteCode/{pid}", method = RequestMethod.GET)
 	public ModelAndView deletePromoCode(@PathVariable("pid") int pid) {
 
-		Promotions promotions = retailerDao.findPromoById(pid);
-		retailerDao.deletePromoCode(promotions);
+		Promotions promotions = promotionDao.findPromoById(pid);
+		promotionDao.deletePromoCode(promotions);
 		return new ModelAndView("redirect:/retailer/promotionlist");
 	}
 

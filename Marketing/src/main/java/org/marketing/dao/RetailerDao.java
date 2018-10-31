@@ -30,18 +30,6 @@ public interface RetailerDao {
 	
 	public List<Product> listAllProductByRetailer(int retId);
 	
-	public void addPromocode(Promotions promotions);
-	
-	public List<Promotions> getPromoDetails(String email);
-	
-	public List<Promotions> ListAllPromoCode();
-	
-	public Promotions findPromoById(int pid);
-	
-	public void deletePromoCode(Promotions promotions);
-	
-	public List<Promotions> blurrySearch(String searchTerm);
-	
 	public List<Retailer> blurrySearchRetailer(String searchTerm);
 	
 	

@@ -86,21 +86,12 @@ public class RetailerDaoImpl implements RetailerDao {
 		
 	}
 
-	public void addPromocode(Promotions promotions) {
-
-		getSession().saveOrUpdate(promotions);
-	}
-
+	
 	public User getUser(String email) {
 		User user = (User) getSession().get(User.class, email);
 		return user;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Promotions> getPromoDetails(String email) {
-		
-		return getSession().createQuery("from Promotions as a where a.user.email = :id").setString("id", email).list();
-	}
 	
 
 	public Retailer findRetailerByEmail(String email) {
@@ -109,38 +100,14 @@ public class RetailerDaoImpl implements RetailerDao {
 		
 	
 	}
-
-	public Promotions findPromoById(int pid) {
-
-		Promotions promotions = (Promotions)getSession().get(Promotions.class, pid);
-		return promotions;
-	}
-
-	public void deletePromoCode(Promotions promotions) {
-		
 	
-		getSession().delete(promotions);
-		
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<Promotions> ListAllPromoCode() {
-		
-		return getSession().createQuery("from Promotions").list();
-	}
-
 	@SuppressWarnings("unchecked")
 	public List<Product> listAllProductByRetailer(int retId) {
 		
 		return getSession().createQuery("from Product as a where a.retailer.retId = :id").setInteger("id", retId).list();
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Promotions> blurrySearch(String searchTerm) {
-		
-	    return getSession().createQuery("from Promotions as a where a.retailer.street1 like :search or a.retailer.route1 like :search or a.retailer.city1 like :search or a.retailer.state1 like :search or a.retailer.state1 like :search or a.retailer.country1 like :search").setString("search", "%"+searchTerm+"%").list();
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<Retailer> blurrySearchRetailer(String searchTerm) {
 

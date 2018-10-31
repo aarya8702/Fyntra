@@ -1,12 +1,9 @@
 package org.marketing.controller;
 
-import java.util.List;
 
 import org.marketing.dao.ProductDao;
+import org.marketing.dao.PromotionDao;
 import org.marketing.dao.RetailerDao;
-import org.marketing.model.Product;
-import org.marketing.model.Promotions;
-import org.marketing.model.Retailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +19,9 @@ public class SearchController {
 
 	@Autowired
 	private RetailerDao retailerDao;
+	
+	@Autowired
+	private PromotionDao promotionDao;
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@RequestParam(value = "search", required = false) String q, Model model) {
@@ -29,7 +29,7 @@ public class SearchController {
 		model.addAttribute("list", productDao.blurrySearch(q));
 		model.addAttribute("product",productDao.listAllProducts());
 		model.addAttribute("retailer",retailerDao.blurrySearchRetailer(q));
-		model.addAttribute("promo", retailerDao.blurrySearch(q));
+		model.addAttribute("promo", promotionDao.blurrySearch(q));
 		return "webpages/gallery";
 
 	}

@@ -4,7 +4,7 @@ body{
 		font-family: Quicksand;
 }
 hr{
-	color: black;
+	color: white;
 }
 
 .jumbotron {
@@ -105,9 +105,10 @@ nav ul li a{
 }
 
 .panel {
-	border: 1px solid #f4511e;
-	border-radius: 0 !important;
+	border: 1px solid none;
+	border-radius: 10px 10px 10px 10px;
 	transition: box-shadow 0.5s;
+	
 }
 
 .panel:hover {
@@ -115,7 +116,7 @@ nav ul li a{
 }
 
 .panel-footer .btn:hover {
-	border: 1px solid #f4511e;
+	border: 1px solid white;
 	background-color: #fff !important;
 	color: #f4511e;
 }
@@ -125,14 +126,16 @@ nav ul li a{
 	background-color: #f4511e;
 	padding: 25px;
 	border-bottom: 1px solid transparent;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
 }
 
 .panel-footer {
 	background-color: white !important;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .panel-footer h3 {

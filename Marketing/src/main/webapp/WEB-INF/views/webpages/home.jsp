@@ -109,6 +109,7 @@
 	</div>
 	<div class="container">
 		<c:forEach items="${retailer }" var="retailer">
+		<hr style="margin-bottom: 0px;">
 			<div class="row">
 				<div class="col-md-8" style="">
 					<h2>${retailer.retailername }</h2>
@@ -117,13 +118,12 @@
 					</h5>
 				</div>
 			</div>
-			<hr>
+			<hr style="margin-top: 0px;">
 			<div class="row">
 				<c:forEach items="${promo }" var="promo">
-					<c:if
-						test="${promo.retailer.retailername == retailer.retailername}">
-						<div class="col-sm-4">
-							<div class="panel panel-primary">
+					<c:if test="${promo.retailer.retailername == retailer.retailername}">
+						<div class="col-sm-4" style="padding-left: 65px;">
+							<div class="panel panel-primary" style="width: 250px;">
 								<div class="panel-heading" style="height: 100px;">${promo.description }</div>
 								<div class="panel-heading" style="background-color: white;">
 									<b><font color="black">Products by
@@ -135,13 +135,7 @@
 										data-ride="carousel">
 										<!-- Indicators -->
 
-										<ol class="carousel-indicators">
-											<li data-target="#${promo.pid}" data-slide-to="0"
-												class="active"></li>
-										    <c:forEach items="${product }" var="size">
-											<li data-target="#${promo.pid}" data-slide-to="${p.productId }"></li>
-											</c:forEach>
-										</ol>
+									
 
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner">
@@ -149,11 +143,7 @@
 												<img
 													src="<c:url value='/resources/images/carousel1.jpeg'></c:url>"
 													alt="Los Angeles" style="width: 360px; height: 150px;">
-												<div class="carousel-caption">
-													<h3>Chania</h3>
-													<p>The atmosphere in Chania has a touch of Florence and
-														Venice.</p>
-												</div>
+												
 											</div>
 											<c:forEach items="${product }" var="p">
 												<c:if test="${p.retailer.retId == retailer.retId }">
@@ -168,13 +158,13 @@
 									</div>
 
 								</div>
-								<div class="panel-footer">
+								<div class="panel-footer text-center">
 									<b>Promotion Code:</b> ${promo.promotioncode}
 								</div>
-								<div class="panel-footer">
+								<div class="panel-footer text-center">
 									<b>Discount:</b> ${promo.discount }%
 								</div>
-								<div class="panel-footer">
+								<div class="panel-footer text-center">
 									<a class="btn btn-danger"
 										href="<c:url value='/product-by-${retailer.retId}'></c:url>">browse
 										more</a>

@@ -27,7 +27,7 @@
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<div class="panel panel-primary" style="padding-top: 30px; margin-top: 50px;">
+				<div class="panel panel-primary" style="padding-top: 30px; margin-top: 50px; width: 350px;">
 					<div style="margin-bottom: 20px;">
 						<h2 style="padding-left: 130px;" >Login</h2>
 					</div>

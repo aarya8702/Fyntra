@@ -1,4 +1,4 @@
-	<div class="container-fluid bg-grey">
+	<div class="container-fluid bg-grey" style="margin-top: 100px;">
 		<h2 class="text-center">CONTACT</h2>
 		<div class="row">
 			<div class="col-sm-5">

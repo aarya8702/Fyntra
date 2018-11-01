@@ -58,7 +58,21 @@ if($(window).scrollTop()){
 						${customer.shippingAddress.country }<br> <b>PHONE NUMBER:</b>
 						${customer.phonenumber }
 					</div>
-					<div class="col-md-6" style="margin-top: 30px;">
+					<div class="col-md-6" style="margin-top: 30px; margin-bottom: 0px;">
+								<label class="col-md-4 control-label"></label>
+								<div class="col-md-6" style="margin-bottom:0px;">
+								    <c:if test="${notExists }">
+								     <p><font color="red">PromoCode not Exists</font></p>
+								    </c:if>
+								     <c:if test="${alreadyApplied }">
+								     <p><font color="red">Already Applied</font></p>
+								    </c:if>
+								     <c:if test="${success }">
+								     <p><font color="green">successfully applied</font></p>
+								    </c:if>
+								</div>
+					</div>
+					<div class="col-md-6" style="margin-top:0px;">
 						<form action="<c:url value='/cart/applyCode'></c:url>" method="post">
 							<div class="form-group">
 								<label class="col-md-4 control-label">Promotional Codes</label>
@@ -81,7 +95,8 @@ if($(window).scrollTop()){
 				</div> 
 				<div class="row">
 					<div class="col-md-12">
-						<table class="table">
+					<div class="table-responsive">
+						<table class="table table-condensed">
 							<thead>
 								<tr>
 									<th>Icon</th>
@@ -104,11 +119,12 @@ if($(window).scrollTop()){
 								</c:forEach>
 							</tbody>
 						</table>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4"
-				style="border: 1px solid lightgrey; border-radius: 6px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; height: 250px;">
+				style="border: 1px solid lightgrey; border-radius: 6px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; height: 278px;">
 				<div class="row">
 					<div class="col-md-6" style="margin-top: 5px;">
 						<h4>

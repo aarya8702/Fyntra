@@ -28,7 +28,8 @@ public class PasswordResetTokenDaoImpl implements PasswordResetTokenDao{
 	public PasswordResetToken findByToken(String token) {
 		
 	
-		return (PasswordResetToken)getSession().createQuery("from PasswordResetToken as a where a.token = :id").setString("id", token).list().get(0);
+		PasswordResetToken passwordToken = (PasswordResetToken) getSession().get(PasswordResetToken.class, token);
+		return passwordToken;
 	}
 	
 //	@Scheduled

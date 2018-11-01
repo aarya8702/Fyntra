@@ -18,10 +18,7 @@ public class PasswordResetTokenCustomer {
 	
 	private static final int EXPIRATION = 60 * 24;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
+	@Id	
 	private String token;
 	
 	@OneToOne(targetEntity = Customer.class, fetch = FetchType.EAGER)
@@ -51,14 +48,6 @@ public class PasswordResetTokenCustomer {
 	public void updateToken(final String token) {
 		this.token = token;
 		this.expiryDate = calculateExpiryDate(EXPIRATION);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getToken() {
@@ -94,7 +83,7 @@ public class PasswordResetTokenCustomer {
 
 	@Override
 	public String toString() {
-		return "PasswordResetTokenCustomer [id=" + id + ", token=" + token + ", customer=" + customer + ", expiryDate="
+		return "PasswordResetTokenCustomer [ token=" + token + ", customer=" + customer + ", expiryDate="
 				+ expiryDate + "]";
 	}
 	

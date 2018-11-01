@@ -310,7 +310,7 @@ p {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-	<div class="container-wrapper">
+	<div class="container-wrapper" style="margin-top: 80px;">
 		<div class="container">
 
 

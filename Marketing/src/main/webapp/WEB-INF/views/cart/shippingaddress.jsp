@@ -33,72 +33,35 @@ if($(window).scrollTop()){
 				<div class="card">
 					<div class="card-body">
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<h2>Shipping Address Details</h2>
 								<hr>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-12">
-							<spring:url value="/cart/reviewYourOrder" var="review"/>
-								<form:form action="${review }" method="post"
-									class="form-horizontal" modelAttribute="shippingaddress">
-									<form:hidden path="id" />
+							<div class="col-md-8">
+							
 									<fieldset>
 										<legend class="center-block">*All your orders will be delivered to this address</legend>
-										<div class="form-group">
-											<label class="col-md-2 control-label"><b>apartmentnumber: </b></label>
-											<div class="col-md-6">
-												<form:input type="text" path="apartmentnumber"
-													class="form-control" placeholder="Enter ContactPerson" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-2 control-label"><b>streetnumber: </b></label>
-											<div class="col-md-6">
-												<form:input type="text" path="streetname"
-													class="form-control" placeholder="Enter ContactPerson" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-2 control-label"><b>city: </b></label>
-											<div class="col-md-6">
-												<form:input type="text" path="city"
-													class="form-control" placeholder="Enter ContactPerson" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-2 control-label"><b>state: </b></label>
-											<div class="col-md-6">
-												<form:input type="text" path="state"
-													class="form-control" placeholder="Enter ContactPerson" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-2 control-label"><b>zipcode: </b></label>
-											<div class="col-md-6">
-												<form:input type="text" path="zipcode"
-													class="form-control" placeholder="Enter ContactPerson" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-2 control-label"><b>country: </b></label>
-											<div class="col-md-6">
-												<form:input type="text" path="country"
-													class="form-control" placeholder="Enter ContactPerson" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-2 control-label"></label>
-											<div class="col-md-6">
-												<button type="submit" class="btn btn-success">Delivery to  This Address</button>
-												<a class="btn btn-danger"
-													href="<c:url value = '/cart/listCart'></c:url>">Cancel</a>
-											</div>
-										</div>
 									</fieldset>
-								</form:form>
 							</div>
+						</div>
+						<div class="row">
+						 <div class="col-md-8">
+						 <h4> ${shippingaddress.apartmentnumber }</h4>
+						 <h4> ${shippingaddress.streetname }</h4>
+						 <h4> ${shippingaddress.city }</h4>
+						 <h4> ${shippingaddress.state }</h4>
+						 <h4> ${shippingaddress.zipcode }</h4>
+						 <h4> ${shippingaddress.country }</h4>
+						 <hr>
+						 </div>
+						</div>
+						<div class="row">
+						 <div class="col-md-4">
+						  <a class="btn btn-danger" href="<c:url value='/cart/editShippingAddress'></c:url>">Edit</a>
+						  <a class="btn btn-success" href="<c:url value='/cart/reviewYourOrder'></c:url>">Review Your Order</a>
+						 </div>
 						</div>
 					</div>
 				</div>

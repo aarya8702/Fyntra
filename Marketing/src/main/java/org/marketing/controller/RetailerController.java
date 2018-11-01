@@ -3,9 +3,11 @@ package org.marketing.controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.marketing.dao.CategoryDao;
 import org.marketing.dao.ProductDao;
 import org.marketing.dao.PromotionDao;
 import org.marketing.dao.RetailerDao;
+import org.marketing.model.Category;
 import org.marketing.model.Product;
 import org.marketing.model.Promotions;
 import org.marketing.model.Retailer;
@@ -32,6 +34,9 @@ public class RetailerController {
 	
 	@Autowired
 	private PromotionDao promotionDao;
+	
+	@Autowired
+	private CategoryDao categoryDao;
 
 	@RequestMapping(value = "/updateRetailer", method = RequestMethod.GET)
 	public ModelAndView updateRetailerForm(
@@ -114,6 +119,8 @@ public class RetailerController {
 	public ModelAndView addPromotions() {
 		ModelAndView model = new ModelAndView("retailer/promotionAdd");
 		model.addObject("promotionForm", new Promotions());
+		List<Category> category = categoryDao.listAllCategories();
+		model.addObject("categories",category);
 		return model;
 	}
 

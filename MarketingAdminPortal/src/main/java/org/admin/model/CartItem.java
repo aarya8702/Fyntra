@@ -24,6 +24,8 @@ public class CartItem {
 	
 	private BigDecimal subtotal;
 	
+	private BigDecimal oldSubTotal;
+
 	@ManyToOne
 	@JoinColumn(name="shopping_cart_id")
 	private ShoppingCart shoppingCart;
@@ -97,8 +99,16 @@ public class CartItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
-	
+
+	public BigDecimal getOldSubTotal() {
+		return oldSubTotal;
+	}
+
+	public void setOldSubTotal(BigDecimal oldSubTotal) {
+		this.oldSubTotal = oldSubTotal;
+	}
+
+
 	
 	
 	

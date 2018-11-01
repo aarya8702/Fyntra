@@ -161,25 +161,36 @@ public class CartController {
 	@RequestMapping(value = "/shippingaddress")
 	public String getShippingAddress(@AuthenticationPrincipal Principal principal, Model model) {
 		String email = principal.getName();
-		User user = cartItemDao.getUser(email);
-		Customer customer = user.getCustomer();
+		Customer customer = customerDao.findCustomerByEmail(email);
 		ShippingAddress shippingAddress = customer.getShippingAddress();
+		model.addAttribute("shippingaddress", shippingAddress);
+		return "cart/shippingaddress";
+	}
+	
+	@RequestMapping(value = "/editShippingAddress")
+	public String editShippingAddress(@AuthenticationPrincipal Principal principal, Model model) {
+		String email = principal.getName();
+		Customer customer = customerDao.findCustomerByEmail(email);
+		ShippingAddress shippingAddress = customer.getShippingAddress();
+		model.addAttribute("shippingaddress", shippingAddress);
+		return "cart/shippingAddressForm";
+	}
+	
+	@RequestMapping(value = "/saveShippingaddress")
+	public String saveShippingAddress(@AuthenticationPrincipal Principal principal, Model model,@ModelAttribute("shippingaddress") ShippingAddress shippingAddress) {
+		String email = principal.getName();
+		Customer customer = customerDao.findCustomerByEmail(email);
 		customer.setShippingAddress(shippingAddress);
 		customerDao.updateCustomer(customer);
-		model.addAttribute("shippingaddress", shippingAddress);
 		return "cart/shippingaddress";
 	}
 
 	@RequestMapping(value = "/reviewYourOrder")
-	public String reviewYourOrder(@AuthenticationPrincipal Principal principal, Model model,
-			@ModelAttribute("shippingaddress") ShippingAddress shippingAddress) {
+	public String reviewYourOrder(@AuthenticationPrincipal Principal principal, Model model) {
 
 		String email = principal.getName();
 		User user = cartItemDao.getUser(email);
 		Customer customer = user.getCustomer();
-		customer.setShippingAddress(shippingAddress);
-		customerDao.updateCustomer(customer);
-
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
 		List<CartItem> cartItems = cartItemDao.findCartItemsByShoppingCart(shoppingCart);
 		model.addAttribute("customer", customer);
@@ -188,18 +199,17 @@ public class CartController {
 		return "cart/reviewyourorder";
 	}
 
-	@RequestMapping(value = "/applyCode")
+	@RequestMapping(value = "/applyCode",method=RequestMethod.POST)
 	public String applyPromoCode(@AuthenticationPrincipal Principal principal,
 			@RequestParam("promoCode") String promoCode, Model model) {
 
 		String email = principal.getName();
-
-		
 		
 		Promotions promo = promotionDao.findPromoById(promoCode);
 		
 		if(promo == null) {
-			return "redirect:/cart/reviewYourOrder";
+			model.addAttribute("notExists",true);
+			return "forward:/cart/reviewYourOrder";
 		}
 		
 		ShoppingCart shoppingCart = shoppingCartDao.findShoppingCartByEmail(email);
@@ -216,8 +226,9 @@ public class CartController {
 				if (cartItem.getProduct().getRetailer().getRetailername().equals(promo.getRetailer().getRetailername()) && cartItem.getProduct().getCategory().getMaincategory().equals(promo.getCategory().getMaincategory())) {
 
 					if(cartItem.getOldSubTotal() != null) {
+						model.addAttribute("alreadyApplied",true);
 						System.out.println("Already Applied");
-						return "redirect:/cart/reviewYourOrder";
+						return "forward:/cart/reviewYourOrder";
 						
 					}
 					
@@ -238,6 +249,7 @@ public class CartController {
 		shoppingCart.setGrandTotal(cartTotal);
 		shoppingCart.setOldGrandTotal(oldCartTotal);
 		shoppingCartDao.updateShoppingCart(shoppingCart);
+		model.addAttribute("success",true);
 		model.addAttribute("cartItems", cartItems);
 
 		return "forward:/cart/reviewYourOrder";

@@ -13,9 +13,6 @@ import javax.persistence.Table;
 @Table(name="category")
 public class Category implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -265279672902313094L;
 
 	@Id

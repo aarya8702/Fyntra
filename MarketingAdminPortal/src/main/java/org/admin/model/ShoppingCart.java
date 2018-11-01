@@ -22,6 +22,8 @@ public class ShoppingCart {
 	
 	private BigDecimal grandTotal;
 	
+	private BigDecimal oldGrandTotal;
+
 	@OneToMany(mappedBy = "shoppingCart",cascade = CascadeType.ALL)
 	private List<CartItem> cartItem;
 	
@@ -61,7 +63,15 @@ public class ShoppingCart {
 	public void setCartItem(List<CartItem> cartItem) {
 		this.cartItem = cartItem;
 	}
-	
+
+	public BigDecimal getOldGrandTotal() {
+		return oldGrandTotal;
+	}
+
+	public void setOldGrandTotal(BigDecimal oldGrandTotal) {
+		this.oldGrandTotal = oldGrandTotal;
+	}
+
 	
 	
 	

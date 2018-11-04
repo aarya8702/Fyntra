@@ -35,6 +35,16 @@ $(document).ready(function(){
 })
 
 </script>
+<script type="text/javascript">
+
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-default');
+}else{
+	$('.navbar').removeClass('navbar-default');
+}
+})</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>

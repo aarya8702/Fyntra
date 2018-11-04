@@ -48,6 +48,12 @@ public class HomeController {
 		return "webpages/404";
 	}
 	
+	@RequestMapping(value="/badRequest")
+	public String badRequest(){
+	
+		return "badRequest";
+	}
+	
 	@RequestMapping(value = "/",method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session) {
 		ModelAndView model = new ModelAndView("webpages/home");
@@ -104,6 +110,7 @@ public class HomeController {
 		
 		ModelAndView model = new ModelAndView("webpages/gallery");
 		Retailer retailer = retailerDao.findRetailerById(retId);
+		
 		List<Product> products = productDao.ListProductsByCategoryAndRetailer(retId, mainCategory);
 		model.addObject("name",true);
 		model.addObject("list",products);

@@ -21,11 +21,23 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
+<script type="text/javascript">
+ function enableCategory(){
+	 
+	 if(document.getElementById('checkBox').checked){
+		 
+		 document.getElementById('category').disabled = false;
+	 }else{
+		 document.getElementById('category').disabled = true;
+	 }
+	 
+ }
+</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -51,23 +63,22 @@ if($(window).scrollTop()){
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>Promotion Code: </b></label>
 											<div class="col-md-8">
-												<form:input type="text" path="promotioncode"
+												<form:input type="text" required="required" path="promotioncode"
 													class="form-control" placeholder="Enter Productname" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>Description: </b></label>
 											<div class="col-md-8">
-												<form:textarea type="text" path="description"
+												<form:textarea type="text" required="required" path="description"
 													class="form-control" placeholder="Enter Description"></form:textarea>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-2 control-label"><b>Category: </b></label>
+											<label class="col-md-2 control-label"><!--  <input type="checkbox" id="checkBox" onclick = "enableCategory()"/>--> 
+											<b>Category: </b></label>
 											<div class="col-md-8">
-												<form:select path="category.maincategory"
-													class="form-control">
-													    <form:option value="null">none</form:option>
+												<form:select path="category.maincategory" id="category" disabled="false" class="form-control">
 													<c:forEach items="${categories }" var="c">
 														<form:option value="${c.maincategory }">${c.maincategory }</form:option>
 													</c:forEach>
@@ -77,17 +88,16 @@ if($(window).scrollTop()){
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>Discount Rate(in %) </b></label>
 											<div class="col-md-8">
-												<form:input type="text" path="discount" class="form-control"
+												<form:input type="text" required="required" path="discount" class="form-control"
 													placeholder="Enter Alternate Contact number" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"></label>
 											<div class="col-md-8">
-												<button type="submit" class="btn btn-success">Add
-													Promotion Code</button>
+												<button type="submit" class="btn btn-success">Add Promotion Code</button>
 												<a class="btn btn-danger"
-													href="<c:url value = '/retailer/product/list'></c:url>">Cancel</a>
+													href="<c:url value = '/retailer/promotionList'></c:url>">Cancel</a>
 											</div>
 										</div>
 									</fieldset>
@@ -99,5 +109,6 @@ if($(window).scrollTop()){
 			</div>
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

@@ -34,6 +34,9 @@ if($(window).scrollTop()){
 </div>
 <hr>
 </c:if>
+<c:if test="${empty(list) }">
+ <h1>No Record found!</h1>
+</c:if>
  <c:forEach items = "${list }" var = "product">
 <div class="col-xs-12 col-md-6 bootstrap snippets">
 	<!-- product -->
@@ -42,7 +45,7 @@ if($(window).scrollTop()){
 		
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image"> 
-						<img style="height: 250px; width: 100%;" src="${pageContext.request.contextPath }/resources/${product.imageUrl1}" alt="194x228" class="img-responsive"> 
+						<img style="height: 250px; width: 100%;" src="<c:url value='/resources/${product.imageUrl1}'></c:url>" alt="194x228" class="img-responsive"> 
 					
 					</div>
 				</div>
@@ -53,16 +56,24 @@ if($(window).scrollTop()){
 								<b>${product.productname }</b> <span>Category: <b>${product.category.maincategory }</b></span>
 							</a>
 						</h5>
+						<c:if test="${product.temprice == 0 }">
 						<p class="price-container">
 							<span>Rs. ${product.price }</span>
 						</p>
+						</c:if>
+						<c:if test="${product.temprice != 0 }">
+						<p class="price-container">
+							<span>Rs. ${product.price }</span> <span><font size="2" color="black">(You save: Rs.${product.temprice - product.price})</font></span>
+						</p>
+						<p class="price-container">
+							<span style="text-decoration: line-through; color: tomato;"><font size="4">Rs. ${product.temprice }</font></span>
+						</p>
+						</c:if>
 						<span class="tag1"></span> 
 				</div>
 				<div class="description">
 					<p><b>By:</b>${product.retailer.retailername }</p>
 					
-					<label>Brand: Brand</label>
-					<br>
 					<label>Quantity Left: <font color = "red">${product.quantity }</font></label>
 				</div>
 				<div class="product-info smart-form">
@@ -83,6 +94,7 @@ if($(window).scrollTop()){
 </c:forEach>
 </div>
 <div class="container">
+
 			<c:forEach items="${retailer }" var="retailer">
 		<hr style="margin-bottom: 0px;">
 			<div class="row">
@@ -95,6 +107,9 @@ if($(window).scrollTop()){
 			</div>
 			<hr style="margin-top: 0px;">
 			<div class="row">
+			<c:if test="${empty(promo) }">
+			 <h1>No Record Found!</h1>
+			</c:if>
 				<c:forEach items="${promo }" var="promo">
 					<c:if test="${promo.retailer.retailername == retailer.retailername}">
 						<div class="col-sm-4" style="padding-left: 65px;">
@@ -124,7 +139,7 @@ if($(window).scrollTop()){
 												<c:if test="${p.retailer.retId == retailer.retId && p.category.maincategory == promo.category.maincategory}">
 													<div class="item ">
 														<img
-															src="<c:url value='/resources/${p.imageUrl1 }'></c:url>"
+															src=${p.imageUrl1 }"
 															alt="Los Angeles" style="width: 360px; height: 150px;">
 													</div>
 												</c:if>

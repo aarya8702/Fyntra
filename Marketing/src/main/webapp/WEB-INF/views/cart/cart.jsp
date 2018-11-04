@@ -15,9 +15,9 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 <script>
@@ -101,7 +101,7 @@ $(document).ready(function(){
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
-                            <a class="img img-thumbnail pull-left" > <img style = "width:200px; height:150px;"class="media-object img-thumbnail img-responsive" src="${pageContext.request.contextPath }/resources/${cart.product.imageUrl1}" style="width: 72px; height: 72px;"> </a>
+                            <a class="img img-thumbnail pull-left" > <img style = "width:200px; height:150px;"class="media-object img-thumbnail img-responsive" src="<c:url value='/resources/${cart.product.imageUrl1}'></c:url>" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="#">${cart.product.productname }</a></h4>
                                 

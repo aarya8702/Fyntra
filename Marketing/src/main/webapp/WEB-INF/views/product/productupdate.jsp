@@ -29,15 +29,15 @@
 	});
 </script>
 <script type="text/javascript">
-	$(window).on('scroll', function() {
 
-		if ($(window).scrollTop()) {
-			$('.navbar').addClass('navbar-inverse');
-		} else {
-			$('.navbar').removeClass('navbar-inverse');
-		}
-	})
-</script>
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-default');
+}else{
+	$('.navbar').removeClass('navbar-default');
+}
+})</script>
 <title>Product Update</title>
 
 </head>
@@ -136,9 +136,41 @@
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>Upload
-													Photo </b></label>
+													Photo 1 </b></label>
 											<div class="col-md-8">
-												<form:input type="file" path="file1" class="form-control"
+												<form:input type="file" value="${productForm.imageUrl1 }" path="file1" class="form-control"
+													placeholder="Enter Alternate Contact number" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label"><b>Upload
+													Photo 2</b></label>
+											<div class="col-md-8">
+												<form:input type="file" value="${productForm.imageUrl2 }" path="file2" class="form-control"
+													placeholder="Enter Alternate Contact number" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label"><b>Upload
+													Photo 3 </b></label>
+											<div class="col-md-8">
+												<form:input type="file" value="${productForm.imageUrl3 }" path="file3" class="form-control"
+													placeholder="Enter Alternate Contact number" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label"><b>Upload
+													Photo 4</b></label>
+											<div class="col-md-8">
+												<form:input type="file" value="${productForm.imageUrl4 }" path="file4" class="form-control"
+													placeholder="Enter Alternate Contact number" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label"><b>Upload
+													Photo 5</b></label>
+											<div class="col-md-8">
+												<form:input type="file" value="${productForm.imageUrl5 }" path="file5" class="form-control"
 													placeholder="Enter Alternate Contact number" />
 											</div>
 										</div>
@@ -160,6 +192,7 @@
 			</div>
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
 

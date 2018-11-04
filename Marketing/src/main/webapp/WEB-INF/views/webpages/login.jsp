@@ -20,6 +20,16 @@
 }
 
 </style>
+<script type="text/javascript">
+
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-default');
+}else{
+	$('.navbar').removeClass('navbar-default');
+}
+})</script>
 </head>
 <body style="background-color: rgb(255, 240, 240);">
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />

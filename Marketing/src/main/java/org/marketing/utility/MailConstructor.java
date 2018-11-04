@@ -34,7 +34,7 @@ public class MailConstructor {
 
 	// ======================retailer registration
 	// E-mail============================
-	public SimpleMailMessage constructResetTokenEmail(String contextPath, Locale locale, String token,
+	public SimpleMailMessage constructRegistrationTokenEmailRetailer(String contextPath, Locale locale, String token,
 		Retailer retailer, String password) {
 
 		String url = contextPath + "/newRetailer?token=" + token;
@@ -42,7 +42,7 @@ public class MailConstructor {
 				+ password;
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(retailer.getUser().getEmail());
-		email.setSubject("Fashion's Store- New Retailer");
+		email.setSubject("Fyntra- New Retailer");
 		email.setText(url + message);
 		email.setFrom("aarya526@gmail.com");
 		return email;
@@ -56,7 +56,7 @@ public class MailConstructor {
 		String message = "\nPlease click on this link to reset your password. Your Random Password is: \n" + password;
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(retailer.getUser().getEmail());
-		email.setSubject("Fashion Store- Reset Password");
+		email.setSubject("Fyntra- Reset Password");
 		email.setText(url + message);
 		email.setFrom("aarya526@gmail.com");
 		return email;
@@ -64,7 +64,7 @@ public class MailConstructor {
 
 	// ======================customer registration
 	// mail================================
-	public SimpleMailMessage constructResetTokenEmailCustomer(String contextPath, Locale locale, String token,
+	public SimpleMailMessage constructRegistrationTokenEmailCustomer(String contextPath, Locale locale, String token,
 			Customer customer, String password) {
 
 		String url = contextPath + "/newCustomer?token=" + token;
@@ -72,7 +72,7 @@ public class MailConstructor {
 				+ password;
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(customer.getUser().getEmail());
-		email.setSubject("Fashion's Store- New Customer");
+		email.setSubject("Fyntra- New Customer");
 		email.setText(url + message);
 		email.setFrom("aarya526@gmail.com");
 		return email;
@@ -86,7 +86,7 @@ public class MailConstructor {
 		String message = "\nPlease click on this link to reset your password. Your Random Password is: \n" + password;
 		SimpleMailMessage email = new SimpleMailMessage();
 		email.setTo(customer.getUser().getEmail());
-		email.setSubject("Fashion Store- Reset Password");
+		email.setSubject("Fyntra- Reset Password");
 		email.setText(url + message);
 		email.setFrom("aarya526@gmail.com");
 		return email;

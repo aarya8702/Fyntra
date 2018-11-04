@@ -17,7 +17,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'></c:url>">
 	<title>Fashion Store: Customer Forgot Password</title>
+<script type="text/javascript">
 
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-default');
+}else{
+	$('.navbar').removeClass('navbar-default');
+}
+})</script>
 </head>
 <body>
 	<div class="container" style="margin-top: 100px;">

@@ -17,9 +17,9 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 <title>Fashion Store: Product Info</title>
@@ -38,53 +38,41 @@ if($(window).scrollTop()){
 								<img style="height: 280px;" src="<c:url value='/resources/${product.imageUrl1 }'></c:url>"/>
 							</div>
 							<div class="tab-pane" id="pic-2">
-								<img src="http://placekitten.com/400/252" />
+								<img src="${product.imageUrl2 }" />
 							</div>
 							<div class="tab-pane" id="pic-3">
-								<img src="http://placekitten.com/400/252" />
+								<img src="${product.imageUrl3 }" />
 							</div>
 							<div class="tab-pane" id="pic-4">
-								<img src="http://placekitten.com/400/252" />
+								<img src="${product.imageUrl4 }" />
 							</div>
 							<div class="tab-pane" id="pic-5">
-								<img src="http://placekitten.com/400/252" />
+								<img src="${product.imageUrl5 }" />
 							</div>
 						</div>
 						<ul class="preview-thumbnail nav nav-tabs">
 							<li class="active"><a data-target="#pic-1" data-toggle="tab"><img
-									src="http://placekitten.com/200/126" /></a></li>
+									src="<c:url value='/resources/${product.imageUrl1 }'></c:url>" /></a></li>
 							<li><a data-target="#pic-2" data-toggle="tab"><img
-									src="http://placekitten.com/200/126" /></a></li>
+									src="${product.imageUrl2 }" /></a></li>
 							<li><a data-target="#pic-3" data-toggle="tab"><img
-									src="http://placekitten.com/200/126" /></a></li>
+									src="${product.imageUrl3 }" /></a></li>
 							<li><a data-target="#pic-4" data-toggle="tab"><img
-									src="http://placekitten.com/200/126" /></a></li>
+									src="${product.imageUrl4 }" /></a></li>
 							<li><a data-target="#pic-5" data-toggle="tab"><img
-									src="http://placekitten.com/200/126" /></a></li>
+									src="${product.imageUrl5 }" /></a></li>
 						</ul>
 
 					</div>
 					<div class="details col-md-6">
 						<h3 class="product-title">${product.productname }</h3>
-						<div class="rating">
-							<div class="stars">
-								<span class="fa fa-star checked"></span> <span
-									class="fa fa-star checked"></span> <span
-									class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-							<span class="review-no">41 reviews</span>
-						</div>
+					
 						<p class="product-description" style="margin-top: 0px; margin-bottom: 0px;">${product.description }</p>
 						<h4 class="price">
 							current price: <span>Rs. ${product.price }</span>
 						</h4>
-						<p class="vote">
-							<strong>91%</strong> of buyers enjoyed this product! <strong>(87
-								votes)</strong>
-						</p>
-						<h5 class="sizes">
-							By:<span class="size" data-toggle="tooltip" title="small">${product.retailer.retailername }</span>
+						
+						<h5 class="sizes">By: ${product.retailer.retailername }
 						</h5>
 						 <c:if test="${error}">
 						     <h2><font color="red">Not Enough Stock</font></h2>

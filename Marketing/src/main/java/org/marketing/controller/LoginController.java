@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.marketing.dao.CustomerDao;
 import org.marketing.dao.PasswordResetTokenDao;
 import org.marketing.dao.PasswordResetTokenForCustomerDao;
+import org.marketing.dao.RegistrationTokenCustomerDao;
+import org.marketing.dao.RegistrationTokenRetailerDao;
 import org.marketing.dao.RetailerDao;
 import org.marketing.dao.ShoppingCartDao;
 import org.marketing.model.Authorities;
@@ -18,6 +20,8 @@ import org.marketing.model.BillingAddress;
 import org.marketing.model.Customer;
 import org.marketing.model.PasswordResetToken;
 import org.marketing.model.PasswordResetTokenCustomer;
+import org.marketing.model.RegistrationTokenCustomer;
+import org.marketing.model.RegistrationTokenRetailer;
 import org.marketing.model.Retailer;
 import org.marketing.model.ShippingAddress;
 import org.marketing.model.ShoppingCart;
@@ -63,6 +67,12 @@ public class LoginController {
 	
 	@Autowired
 	private ShoppingCartDao shoppingCartDao;
+	
+	@Autowired
+	private RegistrationTokenCustomerDao registrationTokenCustomerDao;
+	
+	@Autowired
+	private RegistrationTokenRetailerDao registrationTokenRetailerDao;
 	
 	@RequestMapping(value = "/userLogin")
 	public ModelAndView retailerLogin(@RequestParam(value = "error", required = false) String error/*,@ModelAttribute("j_username") String email*/) {
@@ -127,11 +137,11 @@ public class LoginController {
 		retailerDao.registerRetailer(retailer);
 
 		String token = UUID.randomUUID().toString();
-		passwordResetTokenDao.createPasswordResetTokenForRetailer(retailer, token);
+		registrationTokenRetailerDao.createTokenForRetailer(retailer, token);
 
 		String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 
-		SimpleMailMessage eemail = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token,
+		SimpleMailMessage eemail = mailConstructor.constructRegistrationTokenEmailRetailer(appUrl, request.getLocale(), token,
 				retailer, password);
 
 		mailSender.send(eemail);
@@ -145,7 +155,7 @@ public class LoginController {
 	@RequestMapping(value = "/newRetailer")
 	public String newRetailer(Locale locale, @RequestParam("token") String token, ModelMap model) {
 
-		PasswordResetToken passToken = passwordResetTokenDao.findByToken(token);
+		RegistrationTokenRetailer passToken = registrationTokenRetailerDao.findTokenById(token);
 		if (passToken == null) {
 			String message = "Invalid Token.";
 			model.addAttribute("message", message);
@@ -282,11 +292,11 @@ public class LoginController {
 		shoppingCartDao.save(shoppingCart);
 
 		String token = UUID.randomUUID().toString();
-		passwordResetTokenCustomerDao.createPasswordResetTokenForCustomer(customer, token);
+		registrationTokenCustomerDao.createTokenForCustomer(customer, token);
 
 		String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 
-		SimpleMailMessage eemail = mailConstructor.constructResetTokenEmailCustomer(appUrl, request.getLocale(), token,
+		SimpleMailMessage eemail = mailConstructor.constructRegistrationTokenEmailCustomer(appUrl, request.getLocale(), token,
 				customer, password);
 
 		mailSender.send(eemail);
@@ -299,7 +309,7 @@ public class LoginController {
 	@RequestMapping(value = "/newCustomer")
 	public String newCustomer(Locale locale, @RequestParam("token") String token, ModelMap model) {
 
-		PasswordResetTokenCustomer passToken = passwordResetTokenCustomerDao.findByToken(token);
+		RegistrationTokenCustomer passToken = registrationTokenCustomerDao.findTokenById(token);
 		if (passToken == null) {
 			String message = "Invalid Token.";
 			model.addAttribute("message", message);

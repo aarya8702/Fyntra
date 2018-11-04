@@ -20,9 +20,9 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 <style>
@@ -77,7 +77,7 @@ if($(window).scrollTop()){
 <body bgcolor="grey">
 	<div class="container-fluid">
 		<div class="row">
-			<jsp:include page="/WEB-INF/views/common/customernavigation.jsp" />
+			<jsp:include page="/WEB-INF/views/common/navigation.jsp" />
 			<div class="col-md-9">
 				<div class="card">
 					<div class="card-body">
@@ -103,7 +103,7 @@ if($(window).scrollTop()){
 											<div class="col-md-8">
 												<form:input type="text"
 													path="apartmentnumber" class="form-control"
-													placeholder="Enter ContactPerson" />
+													placeholder="Enter apartmentnumber" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -111,21 +111,21 @@ if($(window).scrollTop()){
 											</b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="streetname"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter streetnumber" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>city </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="city"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter city" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>state </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="state"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter state" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -133,7 +133,7 @@ if($(window).scrollTop()){
 											</b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="zipcode"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter zipcode" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -141,7 +141,7 @@ if($(window).scrollTop()){
 											</b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="country"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter country" />
 											</div>
 										</div>
 
@@ -149,9 +149,9 @@ if($(window).scrollTop()){
 											<label class="col-md-2 control-label"></label>
 											<div class="col-md-8">
 												<button type="submit" class="btn btn-success">Update
-													Retailer</button>
+													Shipping Address</button>
 												<a class="btn btn-danger"
-													href="<c:url value = '/admin/retailer/list'></c:url>">Cancel</a>
+													href="<c:url value = '/customer/myAccount'></c:url>">Cancel</a>
 											</div>
 										</div>
 									</fieldset>
@@ -165,6 +165,6 @@ if($(window).scrollTop()){
 		</div>
 	</div>
 
-
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

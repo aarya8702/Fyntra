@@ -20,9 +20,9 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 <style>

@@ -41,12 +41,21 @@
 		}
 	}
 	</script>
-	
+<script type="text/javascript">
+
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-default');
+}else{
+	$('.navbar').removeClass('navbar-default');
+}
+})</script>
 </head>
 <body bgcolor="grey">
 	<div class="container-fluid">
 		<div class="row">
-			<jsp:include page="/WEB-INF/views/common/customernavigation.jsp" />
+			<jsp:include page="/WEB-INF/views/common/navigation.jsp" />
 			<div class="col-md-9">
 				<div class="card">
 					<div class="card-body">
@@ -100,7 +109,7 @@
 											<div class="col-md-8">
 												<button id = "registerRetailer" type="submit" class="btn btn-success">Change Password</button>
 												<a class="btn btn-danger"
-													href="<c:url value = '/admin/retailer/list'></c:url>">Cancel</a>
+													href="<c:url value = '/customer/myAccount'></c:url>">Cancel</a>
 											</div>
 										</div>
 									</fieldset>
@@ -113,5 +122,6 @@
 
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

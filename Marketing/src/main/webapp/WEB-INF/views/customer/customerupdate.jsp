@@ -69,16 +69,16 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 </head>
 <body bgcolor="grey">
 	<div class="container-fluid">
 		<div class="row">
-			<jsp:include page="/WEB-INF/views/common/customernavigation.jsp" />
+			<jsp:include page="/WEB-INF/views/common/navigation.jsp" />
 			<div class="col-md-9">
 				<div class="card">
 					<div class="card-body">
@@ -147,42 +147,42 @@ if($(window).scrollTop()){
 											<label class="col-md-2 control-label"><b>apartmentnumber </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="shippingAddress.apartmentnumber"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter Apartmentnumber" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>streetnumber </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="shippingAddress.streetname"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter streetname" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>city </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="shippingAddress.city"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter city" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>state </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="shippingAddress.state"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter state" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>zipcode </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="shippingAddress.zipcode"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter zipcode" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>country </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="shippingAddress.country"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter country" />
 											</div>
 										</div>
 											<hr>
@@ -192,51 +192,51 @@ if($(window).scrollTop()){
 											<label class="col-md-2 control-label"><b>apartmentnumber </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="billingAddress.apartmentnumber"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter apartmentnumber" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>streetnumber </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="billingAddress.streetname"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter streetname" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>city </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="billingAddress.city"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter city" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>state </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="billingAddress.state"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter state" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>zipcode </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="billingAddress.zipcode"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter zipcode" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"><b>country </b></label>
 											<div class="col-md-8">
 												<form:input type="text" path="billingAddress.country"
-													class="form-control" placeholder="Enter ContactPerson" />
+													class="form-control" placeholder="Enter country" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-2 control-label"></label>
 											<div class="col-md-8">
 												<button type="submit" class="btn btn-success">Update
-													Retailer</button>
+													Details</button>
 												<a class="btn btn-danger"
-													href="<c:url value = '/admin/retailer/list'></c:url>">Cancel</a>
+													href="<c:url value = '/customer/info'></c:url>">Cancel</a>
 											</div>
 										</div>
 									</fieldset>
@@ -333,6 +333,6 @@ if($(window).scrollTop()){
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgsx2vc804jQH6_vON6JEvnQ7tj7bwPVA&libraries=places&callback=initAutocomplete"
 		async defer></script>
-
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

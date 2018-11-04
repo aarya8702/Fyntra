@@ -20,9 +20,9 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 <style>
@@ -73,6 +73,7 @@ if($(window).scrollTop()){
 	margin-bottom: 2px;
 }
 </style>
+
 </head>
 <body bgcolor="grey">
 	<div class="container-fluid">
@@ -291,6 +292,6 @@ if($(window).scrollTop()){
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgsx2vc804jQH6_vON6JEvnQ7tj7bwPVA&libraries=places&callback=initAutocomplete"
 		async defer></script>
-
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

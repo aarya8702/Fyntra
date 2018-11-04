@@ -17,4 +17,6 @@ public interface PromotionDao {
 	public void deletePromoCode(Promotions promotions);
 	
 	public List<Promotions> blurrySearch(String searchTerm);
+	
+	public void update(Promotions promotions);
 }

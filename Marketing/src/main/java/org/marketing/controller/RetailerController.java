@@ -177,6 +177,7 @@ public class RetailerController {
 		for (Product products : product) {
 
 			products.setPrice(products.getTemprice());
+			products.setTemprice(0);
 			productDao.update(products);
 		}
 
@@ -191,5 +192,6 @@ public class RetailerController {
 		promotionDao.deletePromoCode(promotions);
 		return new ModelAndView("redirect:/retailer/promotionlist");
 	}
+	
 
 }

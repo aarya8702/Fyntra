@@ -13,6 +13,7 @@ import org.marketing.dao.CategoryDao;
 import org.marketing.dao.ProductDao;
 import org.marketing.dao.RetailerDao;
 import org.marketing.dao.SubCat1Dao;
+import org.marketing.dao.impl.AncillaryDaoImpl;
 import org.marketing.model.Product;
 import org.marketing.model.Retailer;
 import org.marketing.model.User;
@@ -72,6 +73,12 @@ public class ProductController {
 		Retailer retailer = retailerDao.findRetailerByEmail(email);
 		product.setRetailer(retailer);
 		product.setUser(user);
+//		product.setImageUrl1(AncillaryDaoImpl.uploadImage(product.getFile1()));
+//		product.setImageUrl2(AncillaryDaoImpl.uploadImage(product.getFile2()));
+//		product.setImageUrl3(AncillaryDaoImpl.uploadImage(product.getFile3()));
+//		product.setImageUrl4(AncillaryDaoImpl.uploadImage(product.getFile4()));
+//		product.setImageUrl5(AncillaryDaoImpl.uploadImage(product.getFile5()));
+
 		productDao.save(product);
 		
 		ServletContext context=session.getServletContext();
@@ -119,6 +126,11 @@ public class ProductController {
         Retailer retailer = retailerDao.findRetailerByEmail(email);
         product.setRetailer(retailer);
         product.setUser(user);
+//      product.setImageUrl1(AncillaryDaoImpl.uploadImage(product.getFile1()));
+//		product.setImageUrl2(AncillaryDaoImpl.uploadImage(product.getFile2()));
+//		product.setImageUrl3(AncillaryDaoImpl.uploadImage(product.getFile3()));
+//		product.setImageUrl4(AncillaryDaoImpl.uploadImage(product.getFile4()));
+//		product.setImageUrl5(AncillaryDaoImpl.uploadImage(product.getFile5()));
         productDao.update(product);
 		
 		
@@ -153,7 +165,10 @@ public class ProductController {
 		
 		
 		Product product = productDao.findProductById(productId);
-		productDao.delete(product);
+		product.setRetailer(null);
+		product.setUser(null);
+		product.setActive(false);
+		productDao.update(product);
 		return new ModelAndView("redirect:/retailer/product/list");
 		
 	}

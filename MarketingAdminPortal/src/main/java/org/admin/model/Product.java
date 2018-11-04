@@ -51,8 +51,29 @@ public class Product {
 	@Transient
 	private MultipartFile file1;
 	
-	private String imageUrl1;
+	@Transient
+	private MultipartFile file2;
 	
+	@Transient
+	private MultipartFile file3;
+	
+	@Transient
+	private MultipartFile file4;
+	
+	@Transient
+	private MultipartFile file5;
+	
+	
+	private String imageUrl1;
+
+	private String imageUrl2;
+
+	private String imageUrl3;
+
+	private String imageUrl4;
+	
+	private String imageUrl5;
+
 	
 
 	public int getProductId() {
@@ -111,14 +132,6 @@ public class Product {
 		this.file1 = file1;
 	}
 
-	public String getImageUrl1() {
-		return imageUrl1;
-	}
-
-	public void setImageUrl1(String imageUrl1) {
-		this.imageUrl1 = imageUrl1;
-	}
-	
 	public boolean isActive() {
 		return active;
 	}
@@ -143,6 +156,14 @@ public class Product {
 		this.subcategory1 = subcategory1;
 	}
 
+	public Retailer getRetailer() {
+		return retailer;
+	}
+
+	public void setRetailer(Retailer retailer) {
+		this.retailer = retailer;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -151,17 +172,79 @@ public class Product {
 		this.user = user;
 	}
 
-	public Retailer getRetailer() {
-		return retailer;
+	public MultipartFile getFile2() {
+		return file2;
 	}
 
-	public void setRetailer(Retailer retailer) {
-		this.retailer = retailer;
+	public void setFile2(MultipartFile file2) {
+		this.file2 = file2;
+	}
+
+	public MultipartFile getFile3() {
+		return file3;
+	}
+
+	public void setFile3(MultipartFile file3) {
+		this.file3 = file3;
+	}
+
+	public MultipartFile getFile4() {
+		return file4;
+	}
+
+	public void setFile4(MultipartFile file4) {
+		this.file4 = file4;
+	}
+
+	public MultipartFile getFile5() {
+		return file5;
+	}
+
+	public void setFile5(MultipartFile file5) {
+		this.file5 = file5;
+	}
+
+	public String getImageUrl1() {
+		return imageUrl1;
+	}
+
+	public void setImageUrl1(String imageUrl1) {
+		this.imageUrl1 = imageUrl1;
+	}
+
+	public String getImageUrl2() {
+		return imageUrl2;
+	}
+
+	public void setImageUrl2(String imageUrl2) {
+		this.imageUrl2 = imageUrl2;
+	}
+
+	public String getImageUrl3() {
+		return imageUrl3;
+	}
+
+	public void setImageUrl3(String imageUrl3) {
+		this.imageUrl3 = imageUrl3;
+	}
+
+	public String getImageUrl4() {
+		return imageUrl4;
+	}
+
+	public void setImageUrl4(String imageUrl4) {
+		this.imageUrl4 = imageUrl4;
+	}
+
+	public String getImageUrl5() {
+		return imageUrl5;
+	}
+
+	public void setImageUrl5(String imageUrl5) {
+		this.imageUrl5 = imageUrl5;
 	}
 	
-
 	
-
 	
 	
 

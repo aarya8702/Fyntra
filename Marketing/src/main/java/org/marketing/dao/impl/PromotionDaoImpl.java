@@ -58,5 +58,10 @@ public class PromotionDaoImpl implements PromotionDao{
 		
 	}
 
+	public void update(Promotions promotions) {
+
+		getSession().update(promotions);
+	}
+
 	
 }

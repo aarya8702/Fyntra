@@ -19,15 +19,15 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/search.css'></c:url>">
 <script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
 <script type="text/javascript">
-	$(window).on('scroll', function() {
 
-		if ($(window).scrollTop()) {
-			$('.navbar').addClass('navbar-inverse');
-		} else {
-			$('.navbar').removeClass('navbar-inverse');
-		}
-	})
-</script>
+$(window).on('scroll',function(){
+
+if($(window).scrollTop()){
+	$('.navbar').addClass('navbar-default');
+}else{
+	$('.navbar').removeClass('navbar-default');
+}
+})</script>
 <style>
 .panel-heading {
 	text-align: center;
@@ -46,10 +46,10 @@
 		</ol>
 
 		<!-- Wrapper for slides -->
-		<div class="carousel-inner">
+		<div class="carousel-inner" >
 			<div class="item active">
 				<img src="<c:url value='/resources/images/carousel1.jpeg'></c:url>"
-					alt="Los Angeles" style="width: 100%; height: 450px;">
+					alt="Los Angeles" style="width: 60%; margin: auto;">
 				<div class="carousel-caption">
 					<h3>Chania</h3>
 					<p>The atmosphere in Chania has a touch of Florence and Venice.</p>
@@ -58,7 +58,7 @@
 
 			<div class="item">
 				<img src="<c:url value='/resources/images/carousel2.jpeg'></c:url>"
-					alt="Los Angeles" style="width: 100%; height: 450px;">
+					alt="Los Angeles" style="width: 60%; margin: auto;">
 				<div class="carousel-caption">
 					<h3>Chania</h3>
 					<p>The atmosphere in Chania has a touch of Florence and Venice.</p>
@@ -67,7 +67,7 @@
 
 			<div class="item">
 				<img src="<c:url value='/resources/images/carousel3.jpeg'></c:url>"
-					alt="Los Angeles" style="width: 100%; height: 450px;">
+					alt="Los Angeles" style="width: 60%; margin: auto;">
 				<div class="carousel-caption">
 					<h3>Chania</h3>
 					<p>The atmosphere in Chania has a touch of Florence and Venice.</p>
@@ -87,8 +87,10 @@
 	</div>
 	
    
-	<div class="jumbotron"
-		style="background-image: url('<c:url value='/resources/images/search.jpg'></c:url>');">
+	<div class="jumbotron" style="background-color: white;">
+	<div class="row">
+	 <div class="col-md-12"><h3 style="text-align: center; padding-bottom: 30px;"><font color="black">Search</font></h3></div>
+	</div>
 		<div class="row">
 			<div class="container">
 				<div class="col-md-2"></div>

@@ -18,9 +18,9 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 </head>
@@ -28,7 +28,7 @@ if($(window).scrollTop()){
 	<div class="container-fluid">
 		
 		<div class="row">
-			<jsp:include page="/WEB-INF/views/common/customernavigation.jsp" />
+			<jsp:include page="/WEB-INF/views/common/navigation.jsp" />
 			<div class="col-md-9">
 				<div class="panel-group">
 					<div class="panel panel-default" style="border: none;">
@@ -142,5 +142,6 @@ if($(window).scrollTop()){
 			</div>
 		</div>
 	</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

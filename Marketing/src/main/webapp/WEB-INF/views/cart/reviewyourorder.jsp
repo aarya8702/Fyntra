@@ -16,9 +16,9 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 </head>
@@ -46,7 +46,7 @@ if($(window).scrollTop()){
 					<div class="col-md-4" style="margin-top: 5px;">
 						<h4>
 							<b>Shipping Address(<a
-								href="<c:url value='/cart/shippingaddress'></c:url>">change</a>)
+								href="<c:url value='/cart/editShippingAddress'></c:url>">change</a>)
 							</b>
 						</h4>
 						${customer.firstname } ${customer.lastname }<br>

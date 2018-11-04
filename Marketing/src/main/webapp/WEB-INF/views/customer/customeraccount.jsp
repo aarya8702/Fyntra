@@ -18,16 +18,16 @@
 $(window).on('scroll',function(){
 
 if($(window).scrollTop()){
-	$('.navbar').addClass('navbar-inverse');
+	$('.navbar').addClass('navbar-default');
 }else{
-	$('.navbar').removeClass('navbar-inverse');
+	$('.navbar').removeClass('navbar-default');
 }
 })</script>
 </head>
 <body>
 <div class="container-fluid">
 	<div class="row">
-		<jsp:include page="/WEB-INF/views/common/customernavigation.jsp"/>
+		<jsp:include page="/WEB-INF/views/common/navigation.jsp"/>
 		<div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
@@ -49,5 +49,6 @@ if($(window).scrollTop()){
 		</div>
 	</div>
 </div>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
